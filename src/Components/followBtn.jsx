@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function followBtn({id}){
+function FollowBtn({id}){
     
     const [follows, setFollows] = useState(JSON.parse(localStorage.getItem("follows")) || [] )
 
@@ -27,4 +27,4 @@ function followBtn({id}){
     )
 }
 
-export default followBtn
+export default FollowBtn

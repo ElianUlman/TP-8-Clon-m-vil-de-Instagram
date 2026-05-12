@@ -1,5 +1,5 @@
-import { use, useState } from 'react'
-import 
+
+import FollowBtn from './followBtn'
 
 function CardSugerido(props){
     //seguir
@@ -11,10 +11,10 @@ function CardSugerido(props){
             
             <h2>{props.breeds[0]?.name || "meowser"}</h2>
             <h3>Follows you</h3>
-            
+            <FollowBtn id={props.id}/>
 
         </div>
     )
 }
 
-export default BarraEstados
+export default CardSugerido

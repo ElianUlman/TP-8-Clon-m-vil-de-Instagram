@@ -9,7 +9,7 @@ function BarraEstados({estados}){
         <section>
             {
                 estados.map((item, index) => (
-                    <Estado nombrePerfil = {item.nombrePerfil} img = {item.img}/>
+                    <Estado nombrePerfil = {item.nombrePerfil} img = {item.img} key={index}/>
                 ))
             }
         </section>

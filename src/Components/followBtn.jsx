@@ -15,7 +15,7 @@ function FollowBtn({id}){
         setFollows(follows.filter(item => item !== id))
         localStorage.setItem("follows", JSON.stringify(follows.filter(item => item !== id)))
     }
-    
+  
     return(
         <>
             {

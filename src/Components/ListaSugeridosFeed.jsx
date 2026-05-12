@@ -2,7 +2,7 @@
 import CardSugerido from './CardSugerido'
 
 
-function ListaSugeridosFeed(props){
+function ListaSugeridosFeed({ListaSugeridos}){
 
 
     return(
@@ -10,8 +10,8 @@ function ListaSugeridosFeed(props){
             <h1>Suggestions for you</h1>
             <h2>See all</h2>
             {
-                props.map((item, index) => (
-                    <CardSugerido url={props.url} breeds={props.breeds} id={props.id}/>
+                ListaSugeridos.map((item, index) => (
+                    <CardSugerido url={item.url} breeds={item.breeds || null} id={item.id}/>
                 ))
             }
         </section>

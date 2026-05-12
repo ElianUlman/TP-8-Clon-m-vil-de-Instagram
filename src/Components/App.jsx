@@ -1,23 +1,23 @@
 import { useState } from 'react'
-<<<<<<< HEAD
-=======
 import { get10pics } from "../api_connection/api.js"
->>>>>>> origin/Elian
 import './App.css'
 import BarraLateral from './BarraLateral'
 import BarraEstados from './BarraEstados.jsx'
 import ListaSugeridosLateral from './ListaSugeridosLateral.jsx'
+import ListaSugeridosFeed from './ListaSugeridosFeed.jsx'
 
 function App() {
 
   let estadoEjemplo = {
     nombrePerfil: "Prueba",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZplF3Pj0NxTcY3xFKC2-a3M0imAf83-T3sA&s"
+    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZplF3Pj0NxTcY3xFKC2-a3M0imAf83-T3sA&s",
+    id: "aaa"
   }
 
   let estadoEjemplo2 = {
     nombrePerfil: "Prueba2",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStu5YvSHorDHL1YfVdlHI-_3_4s0-xLB2Q7w&s"
+    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStu5YvSHorDHL1YfVdlHI-_3_4s0-xLB2Q7w&s",
+    id: "xxx"
   }
 
   const [response, setResponse] = useState([])
@@ -33,13 +33,14 @@ function App() {
 
   return (
     <>
-<<<<<<< HEAD
-        <BarraLateral/>
-=======
+      {/**
       <BarraLateral />
       <BarraEstados estados={estados} />
-      <ListaSugeridosLateral ListaSugeridos={ListaSugeridos} profile={profile} />
->>>>>>> origin/Elian
+      <ListaSugeridosLateral ListaSugeridos={ListaSugeridos} profile={profile} /> 
+      */}
+      
+      
+      <ListaSugeridosFeed ListaSugeridos={ListaSugeridos} />
     </>
   )
 }

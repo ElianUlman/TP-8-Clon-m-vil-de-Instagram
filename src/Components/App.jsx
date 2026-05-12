@@ -1,13 +1,13 @@
 import { useState } from 'react'
-
 import './App.css'
+import BarraLateral from './BarraLateral'
 
 function App() {
   
 
   return (
     <>
-        <p>hola soy homero chino</p>
+        <BarraLateral/>
     </>
   )
 }

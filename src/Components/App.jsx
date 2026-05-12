@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import {get10pics}from "./api_connection/api.js"
 import './App.css'
+import BarraLateral from './BarraLateral'
 
 function App() {
   const [response, setResponse] = useState([])
@@ -14,9 +14,7 @@ function App() {
 
   return (
     <>
-        <button onClick={()=>trye()}>eeeeeee</button>
-        {response[0] && (<img src={response[0].url} alt="eee" />)}
-        <p>hola soy homero chino</p>
+        <BarraLateral/>
     </>
   )
 }

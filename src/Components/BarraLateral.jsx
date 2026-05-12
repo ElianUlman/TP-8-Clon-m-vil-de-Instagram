@@ -5,18 +5,18 @@ function BarraLateral() {
 
     return (
 
-        <section>
-            <button><img src="" alt="" /></button>
-            <ul>
-                <li><img src="" alt="" /><button>Home</button></li>
-                <li><img src="" alt="" /><button>Search</button></li>
-                <li><img src="" alt="" /><button>Explore</button></li>
-                <li><img src="" alt="" /><button>Reels</button></li>
-                <li><img src="" alt="" /><button>Messages</button></li>
-                <li><img src="" alt="" /><button>Notifications</button></li>
-                <li><img src="" alt="" /><button>Create</button></li>
-                <li><img src="" alt="" /><button>Profile</button></li>
-                <li><img src="" alt="" /><button>More</button></li>
+        <section className="barra-lateral">
+            <button className="barra-lateral__logo"><img src="../src/img/instagram.png" alt="Instagram" className="barra-lateral__logo-img" /></button>
+            <ul className="barra-lateral__nav">
+                <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn"><img src="../src/img/home.png" alt="home" className="barra-lateral__nav-icon-img" /><span className="barra-lateral__nav-label">Home</span></button></li>
+                <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn"><img src="../src/img/search.png" alt="Search" className="barra-lateral__nav-icon-img" /><span className="barra-lateral__nav-label">Search</span></button></li>
+                <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn"><img src="../src/img/explore.png" alt="Explore" className="barra-lateral__nav-icon-img" /><span className="barra-lateral__nav-label">Explore</span></button></li>
+                <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn"><img src="../src/img/reels.png" alt="Reels" className="barra-lateral__nav-icon-img" /><span className="barra-lateral__nav-label">Reels</span></button></li>
+                <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn"><img src="../src/img/messages.png" alt="Messages" className="barra-lateral__nav-icon-img" /><span className="barra-lateral__nav-label">Messages</span></button></li>
+                <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn"><img src="../src/img/notifications.png" alt="Notifications" className="barra-lateral__nav-icon-img" /><span className="barra-lateral__nav-label">Notifications</span></button></li>
+                <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn"><img src="../src/img/create.png" alt="Create" className="barra-lateral__nav-icon-img" /><span className="barra-lateral__nav-label">Create</span></button></li>
+                <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn"><img src="../src/img/profile.png" alt="Profile" className="barra-lateral__nav-icon-img_Profile" /><span className="barra-lateral__nav-label">Profile</span></button></li>
+                <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn"><img src="../src/img/more.png" alt="More" className="barra-lateral__nav-icon-img" /><span className="barra-lateral__nav-label">More</span></button></li>
             </ul>
         </section>
     )

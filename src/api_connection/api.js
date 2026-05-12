@@ -5,13 +5,7 @@ import axios from "axios"
 export const get10pics = async () => {
     try {
       const response = await axios.get(
-        "https://api.thecatapi.com/v1/images/search?limit=2",
-        {
-            headers: {
-               'x-api-key' : apikey 
-            }
-          
-        }
+        `https://api.thecatapi.com/v1/images/search?limit=20&api_key=${apikey}`
       );
 
       return response.data

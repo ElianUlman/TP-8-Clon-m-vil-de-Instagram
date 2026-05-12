@@ -20,6 +20,7 @@ function App() {
   const [response, setResponse] = useState([])
   const [estados, setEstados] = useState([estadoEjemplo, estadoEjemplo2])
   const [ListaSugeridos, setListaSugeridos] = useState([estadoEjemplo, estadoEjemplo2])
+  const [profile, setProfile] = useState({nombre: "MI PROFILE", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiL6bujH6u1Jx9PkPOCEy-5V9x1x3KQS_l6g&s"})
 
   const trye = async () => {
     const e = await get10pics()
@@ -31,7 +32,7 @@ function App() {
     <>
       <BarraLateral />
       <BarraEstados estados={estados} />
-      <ListaSugeridosLateral ListaSugeridos={ListaSugeridos} />
+      <ListaSugeridosLateral ListaSugeridos={ListaSugeridos} profile={profile} />
     </>
   )
 }

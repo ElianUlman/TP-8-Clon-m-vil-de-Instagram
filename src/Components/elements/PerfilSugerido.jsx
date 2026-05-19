@@ -7,7 +7,7 @@ function PerfilSugerido({foto, nombre, id}){
     return(
         <div>
 
-            <img src={foto} alt="" />
+            <img className='perfilSugeridoImg' src={foto} alt="" />
             <p>{nombre}</p>
             <FollowBtn id={id}/>
 

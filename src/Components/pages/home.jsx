@@ -1,16 +1,23 @@
 import { use, useState, useEffect } from 'react'
-import { get10pics } from '../../api_connection/api'
+import { getXpics, getCatById } from '../../api_connection/api'
 import BarraEstados from '../components/BarraEstados'
+import ListaSugeridosLateral from '../components/ListaSugeridosLateral.jsx'
 
 function Home( ){
-    const [profiles, setProfile] = useState()
+    const [estados, setEstados] = useState()
+    const [sugeridos, setSugeridos] = useState()
+    const [perfil, setPerfil] = useState()
 
     useEffect(() => {
 
         async function loadData() {
-            if(profiles == null){
-                const data = await get10pics()
-                setProfile(data)
+            if(estados == null){
+                
+                setEstados(await getXpics(10))
+                setSugeridos(await getXpics(5))
+                let perfil = await getXpics(1)
+                setPerfil(perfil[0])
+                localStorage.setItem("myprofile", perfil[0])
             }
             
         }
@@ -22,8 +29,10 @@ function Home( ){
     return(
         <section>
             
-            {profiles? < BarraEstados estados={profiles}/> : <p>cargando</p> }
+            {estados? < BarraEstados estados={estados}/> : <p>cargando...</p> }
+            {(sugeridos && perfil) && <ListaSugeridosLateral ListaSugeridos={sugeridos} profile={perfil} /> }
             
+
         </section>
     )
 }

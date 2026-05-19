@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { get10pics } from "../api_connection/api.js"
+import { getXpics } from "../api_connection/api.js"
 import './App.css'
 import BarraLateral from './elements/BarraLateral.jsx'
 import BarraEstados from './components/BarraEstados.jsx'

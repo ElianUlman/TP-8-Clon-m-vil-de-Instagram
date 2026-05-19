@@ -2,10 +2,10 @@ const apikey = "live_bs7mcqbT2MHuj1VyIMbB5ScjJdt7axqIzb3uqRn2M1q4tXaUDNzVOyhYIQy
 
 import axios from "axios"
 
-export const get10pics = async () => {
+export const getXpics = async (X) => {
     try {
       const response = await axios.get(
-        `https://api.thecatapi.com/v1/images/search?limit=20&api_key=${apikey}`
+        `https://api.thecatapi.com/v1/images/search?limit=${X}&api_key=${apikey}`
       );
 
       return response.data

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import "./followBtn.css"
 
 function FollowBtn({id}){
     

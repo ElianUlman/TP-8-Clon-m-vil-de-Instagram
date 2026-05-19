@@ -40,11 +40,20 @@ function App() {
      
 
     <BrowserRouter>
+      <BarraLateral />
+      
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/miperfil' element={<MyProfile />} />
       </Routes>
-
+      {/**
+      <BarraLateral />
+      < BarraEstados estados={estados} />
+      <ListaSugeridosLateral ListaSugeridos={ListaSugeridos} profile={profile} /> 
+      
+      
+      
+      <ListaSugeridosFeed ListaSugeridos={ListaSugeridos} /> */}
     </BrowserRouter>
 
      

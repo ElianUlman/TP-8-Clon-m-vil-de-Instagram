@@ -15,9 +15,20 @@ function Home( ){
                 
                 setEstados(await getXpics(10))
                 setSugeridos(await getXpics(5))
-                let perfil = await getXpics(1)
-                setPerfil(perfil[0])
-                localStorage.setItem("myprofile", perfil[0])
+                let perfil = JSON.parse(localStorage.getItem("myprofile")) || ""
+                
+                if(perfil == ""){
+                    perfil = await getXpics(1)
+                    localStorage.setItem("myprofile", JSON.stringify(perfil[0]))
+                    setPerfil(perfil[0])
+                }else{
+                    setPerfil(perfil)
+                }
+
+                //perfil = await getXpics(1)
+                //localStorage.setItem("myprofile", perfil[0]) 
+                //setPerfil(perfil[0])           //      
+                
             }
             
         }

@@ -1,5 +1,5 @@
 
-import CardSugerido from './CardSugerido'
+import CardSugerido from '../elements/CardSugerido'
 
 
 function ListaSugeridosFeed({ListaSugeridos}){

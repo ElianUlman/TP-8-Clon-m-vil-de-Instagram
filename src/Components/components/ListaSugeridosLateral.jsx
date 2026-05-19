@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './ListaSugeridosLateral.css'
-import PerfilSugerido from './PerfilSugerido'
-import MiPerfil from './MiPerfil'
-import Footer from './Footer'
+import PerfilSugerido from '../elements/PerfilSugerido'
+import MiPerfil from '../elements/MiPerfil'
+import Footer from '../elements/Footer'
 
 function ListaSugeridosLateral({ ListaSugeridos, profile }) {
 
@@ -19,7 +19,7 @@ function ListaSugeridosLateral({ ListaSugeridos, profile }) {
 
             {
                 ListaSugeridos.map((item, index) => (
-                    <PerfilSugerido foto={item.img} nombre={item.nombrePerfil} key={index}/>
+                    <PerfilSugerido foto={item.url} nombre={item.nombrePerfil} id={item.id} key={index}/>  //la API no retorna un nombre.
                 ))
             }
 

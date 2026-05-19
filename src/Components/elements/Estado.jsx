@@ -15,7 +15,12 @@ function Estado({nombrePerfil, img}){
 
         <div onClick={handleClick}>
             <img src={img} alt="" />
-            <p>{nombrePerfil}</p>
+            <p>{nombrePerfil}</p> 
+            
+            { 
+            //la API no retorna un nombre.
+            }
+            
         </div>
     )
 }

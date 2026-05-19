@@ -1,10 +1,15 @@
 import { useState } from 'react'
 import { get10pics } from "../api_connection/api.js"
 import './App.css'
-import BarraLateral from './BarraLateral'
-import BarraEstados from './BarraEstados.jsx'
-import ListaSugeridosLateral from './ListaSugeridosLateral.jsx'
-import ListaSugeridosFeed from './ListaSugeridosFeed.jsx'
+import BarraLateral from './elements/BarraLateral.jsx'
+import BarraEstados from './components/BarraEstados.jsx'
+import ListaSugeridosLateral from './components/ListaSugeridosLateral.jsx'
+import ListaSugeridosFeed from './components/ListaSugeridosFeed.jsx'
+import { BrowserRouter, Routes, Route , Navigate} from "react-router-dom";
+
+import MyProfile from './pages/myProfile.jsx'
+import Home from './pages/home.jsx'
+
 
 function App() {
 
@@ -23,7 +28,7 @@ function App() {
   const [response, setResponse] = useState([])
   const [estados, setEstados] = useState([estadoEjemplo, estadoEjemplo2])
   const [ListaSugeridos, setListaSugeridos] = useState([estadoEjemplo, estadoEjemplo2])
-  const [profile, setProfile] = useState({nombre: "MI PROFILE", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiL6bujH6u1Jx9PkPOCEy-5V9x1x3KQS_l6g&s"})
+  const [profile, setProfile] = useState({nombre: "MI PROFILE", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiL6bujH6u1Jx9PkPOCEy-5V9x1x3KQS_l6g&s", id: "123jh"})
 
   const trye = async () => {
     const e = await get10pics()
@@ -32,16 +37,17 @@ function App() {
   }
 
   return (
-    <>
-      {/**
-      <BarraLateral />
-      <BarraEstados estados={estados} />
-      <ListaSugeridosLateral ListaSugeridos={ListaSugeridos} profile={profile} /> 
-      */}
-      
-      
-      <ListaSugeridosFeed ListaSugeridos={ListaSugeridos} />
-    </>
+     
+
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/miperfil' element={<MyProfile />} />
+      </Routes>
+
+    </BrowserRouter>
+
+     
   )
 }
 

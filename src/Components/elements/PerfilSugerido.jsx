@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import './PerfilSugerido.css'
+import FollowBtn from './followBtn'
 
-function PerfilSugerido({foto, nombre}){
+function PerfilSugerido({foto, nombre, id}){
 
     return(
         <div>
 
             <img src={foto} alt="" />
             <p>{nombre}</p>
-            <button>Follow</button>
+            <FollowBtn id={id}/>
 
         </div>
     )

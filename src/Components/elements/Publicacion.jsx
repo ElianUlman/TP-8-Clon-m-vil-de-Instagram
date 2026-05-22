@@ -1,0 +1,36 @@
+import { useState } from "react";
+import "./Publicacion.css";
+
+export default function Publicacion({ publicacion }) {
+  return (
+    <div className="publicacion">
+
+      <div className="publicacion-header">
+        <img className="avatar" src={publicacion.autor.url} alt="avatar" />
+        <span className="username">{publicacion.nombre}</span>
+      </div>
+
+      <img className="imagen" src={publicacion.url} alt="post" />
+
+      <div className="publicacion-acciones">
+        <button><img src="" alt="" /></button>
+        <button><img src="" alt="" /></button>
+        <button><img src="" alt="" /></button>
+        <button className="guardar"><img src="" alt="" /></button>
+      </div>
+
+      <div className="publicacion-likes">{publicacion.likes} likes</div>
+
+      <div className="publicacion-descripcion">
+        <span className="username">{publicacion.username}</span>
+        <span>{publicacion.descripcion}</span>
+      </div>
+
+      <div className="publicacion-comentarios">
+        Ver los {publicacion.cantidadComentarios} comentarios
+      </div>
+
+      <input className="agregar-comentario" type="text" placeholder="Agregar un comentario..." />
+    </div>
+  );
+}

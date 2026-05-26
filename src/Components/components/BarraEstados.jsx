@@ -1,6 +1,6 @@
 import { use, useState } from 'react'
 import "./BarraEstados.css"
-import Estado from './Estado'
+import Estado from '../elements/Estado'
 
 function BarraEstados({estados}){
 
@@ -9,7 +9,7 @@ function BarraEstados({estados}){
         <section>
             {
                 estados.map((item, index) => (
-                    <Estado nombrePerfil = {item.nombrePerfil} img = {item.img}/>
+                    <Estado nombrePerfil = {item.nombrePerfil || "GATITO_PRO_69"} img = {item.url} key={index}/> //la API no retorna un nombre.
                 ))
             }
         </section>

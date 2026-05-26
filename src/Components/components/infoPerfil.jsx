@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import "./infoPerfil.css"
-import { FollowBtn } from "./followBtn.jsx"
-import { BarraEstados } from "./BarraEstados.jsx" 
-function infoPerfil({ perfil }) {
+import  FollowBtn  from "../elements/followBtn.jsx"
+import  BarraEstados  from "./BarraEstados.jsx" 
+function InfoPerfil({ perfil }) {
 
     return (
 
@@ -29,4 +29,4 @@ function infoPerfil({ perfil }) {
     )
 }
 
-export default infoPerfil
+export default InfoPerfil

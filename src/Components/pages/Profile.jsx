@@ -1,12 +1,12 @@
 import { use, useState } from 'react'
-import { infoPerfil } from "../components/infoPerfil.jsx"
+import InfoPerfil from "../components/infoPerfil.jsx"
 
 function Profile( ){
 
 
     return(
         <section>
-            <infoPerfil/>
+            <InfoPerfil/>
         </section>
     )
 }

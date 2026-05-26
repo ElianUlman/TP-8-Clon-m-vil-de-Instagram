@@ -51,11 +51,12 @@ function Home( ){
 
             <main className="home-main">
                 {estados ? <BarraEstados estados={estados}/> : <p>cargando...</p>}
-                {postsXAuthors ? <Feed publicaciones={postsXAuthors}/> : <p>cargando posts...</p>}
+                {(postsXAuthors && perfilesCardSugeridos) ? <Feed publicaciones={postsXAuthors} sugeridos={perfilesCardSugeridos}/> : <p>cargando posts...</p> }
             </main>
 
             <aside className="home-aside">
                 {(sugeridos && perfil) && <ListaSugeridosLateral ListaSugeridos={sugeridos} profile={perfil} />}
+                
             </aside>
         </section>
     )

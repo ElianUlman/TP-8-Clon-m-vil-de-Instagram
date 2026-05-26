@@ -9,7 +9,7 @@ function BarraEstados({estados}){
         <section className="barra-estados">
             {
                 estados.map((item, index) => (
-                    <Estado   nombrePerfil = {item.nombrePerfil || "estado default"} className="estado__nombre" img = {item.url} key={index} className="estado__avatar"/> //la API no retorna un nombre.
+                    <Estado   nombrePerfil = {item.nombrePerfil || "estado default"} className="estado__nombre estado__avatar" img = {item.url} key={index}/> //la API no retorna un nombre.
                 ))
             }
         </section>  

@@ -11,6 +11,7 @@ function Home( ){
     const [sugeridos, setSugeridos] = useState()
     const [perfil, setPerfil] = useState()
     const [postsXAuthors, setpostsXAuthors] = useState()
+    const [perfilesCardSugeridos, setPerfilesCardSugeridos] = useState()
     
 
     useEffect(() => {
@@ -35,7 +36,7 @@ function Home( ){
                 const posts = await getXpics(10)
                 setpostsXAuthors(posts.map((post, index)=>{return {author: authors[index], ...post}}))
                 
-                
+                setPerfilesCardSugeridos(await getXpics(5))
             }
             
         }

@@ -1,17 +1,18 @@
 
 import FollowBtn from './followBtn'
+import "./CardSugerido.css"
 
-function CardSugerido(props){
+function CardSugerido({perfil}){
     //props?.breeds[0]?.name || 
 
     return(
         <div>
             <img src="" alt="X"/>
-            <img src={props.url} alt="image" />
+            <img className='cardSugerdioImg' src={perfil.url} alt="img" />
             
-            <h2>{"meowser"}</h2>
+            <h2>{perfil.nombre || "nombre"}</h2>
             <h3>Follows you</h3>
-            <FollowBtn id={props.id}/>
+            <FollowBtn id={perfil.id}/>
 
         </div>
     )

@@ -8,13 +8,13 @@ function ListaSugeridosLateral({ ListaSugeridos, profile }) {
 
     return (
         
-        <section>
+        <section className="lista-sugeridos-lateral">
 
             <MiPerfil Profile={profile}/>
             
-            <div>
-                <h5>Suggestions for you</h5>
-                <button>See all</button>
+            <div className="lista-sugeridos-lateral__header">
+                <h5 className="lista-sugeridos-lateral__titulo">Suggestions for you</h5>
+                <button className="lista-sugeridos-lateral__ver-todos">See all</button>
             </div>
 
             {

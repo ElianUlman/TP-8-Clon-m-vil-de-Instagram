@@ -13,14 +13,9 @@ function Estado({nombrePerfil, img}){
 
     return(
 
-        <div onClick={handleClick}>
-            <img className='estadoImg' src={img} alt="" />
-            <p>{nombrePerfil}</p> 
-            
-            { 
-            //la API no retorna un nombre.
-            }
-            
+        <div className={`estado ${estadoVisto ? 'estado--visto' : ''}`} onClick={handleClick}>
+            <img className='estado__avatar' src={img} alt="" />
+            <p className='estado__nombre'>{nombrePerfil}</p> 
         </div>
     )
 }

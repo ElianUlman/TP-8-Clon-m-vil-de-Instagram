@@ -1,8 +1,10 @@
 import { use, useState, useEffect } from 'react'
 import { getXpics, getCatById } from '../../api_connection/api'
+import BarraLateral from '../elements/BarraLateral'
 import BarraEstados from '../components/BarraEstados'
 import ListaSugeridosLateral from '../components/ListaSugeridosLateral.jsx'
 import Feed from '../components/Feed.jsx'
+import '../app.css'
 
 function Home( ){
     const [estados, setEstados] = useState()
@@ -43,12 +45,17 @@ function Home( ){
     }, [])
 
     return(
-        <section>
-            
-            {estados? < BarraEstados estados={estados}/> : <p>cargando...</p> }
-            {(sugeridos && perfil) && <ListaSugeridosLateral ListaSugeridos={sugeridos} profile={perfil} /> }
-            {(postsXAuthors) ? <Feed publicaciones={postsXAuthors}/> : <p>cargando posts...</p> }
+        <section className="home-layout">
+            <BarraLateral />
 
+            <main className="home-main">
+                {estados ? <BarraEstados estados={estados}/> : <p>cargando...</p>}
+                {postsXAuthors ? <Feed publicaciones={postsXAuthors}/> : <p>cargando posts...</p>}
+            </main>
+
+            <aside className="home-aside">
+                {(sugeridos && perfil) && <ListaSugeridosLateral ListaSugeridos={sugeridos} profile={perfil} />}
+            </aside>
         </section>
     )
 }

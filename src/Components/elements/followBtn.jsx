@@ -24,8 +24,8 @@ function FollowBtn({id}){
         <>
             {
                 follows.includes(id) 
-                ? <button onClick={unfollowCat}>Following</button>
-                : <button onClick={followCat}>Follow</button>
+                ? <button className="follow-btn" onClick={unfollowCat}>Following</button>
+                : <button className="follow-btn" onClick={followCat}>Follow</button>
             }
         </>
     )

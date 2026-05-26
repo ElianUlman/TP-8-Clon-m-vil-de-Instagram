@@ -1,0 +1,37 @@
+.footer {
+  margin-top: 24px;
+  width: 100%;
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 4px;
+  margin-bottom: 12px;
+}
+
+.footer__link {
+  font-size: 11px;
+  color: #c7c7c7;
+  text-decoration: none;
+}
+
+.footer__link::after {
+  content: "·";
+  margin-left: 4px;
+  color: #c7c7c7;
+}
+
+.footer__link:last-child::after {
+  content: "";
+}
+
+.footer__link:hover {
+  text-decoration: underline;
+}
+
+.footer__copyright {
+  font-size: 11px;
+  color: #c7c7c7;
+  margin: 0;
+}

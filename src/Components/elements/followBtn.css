@@ -1,0 +1,13 @@
+.follow-btn {
+  background: none;
+  border: none;
+  color: #38bdf8;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0;
+  cursor: pointer;
+}
+
+.follow-btn:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,152 @@
+.barra-lateral {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 244px;
+  height: 100vh;
+  background-color: #ffffff;
+  border-right: 1px solid #dbdbdb;
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+
+.barra-lateral__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-top: 28px;
+  margin-bottom: 0px;
+  border-radius: 8px;
+  transition: background-color 0.15s ease;
+  text-decoration: none;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  max-width: 120px;
+}
+
+.barra-lateral__logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin-top: -30px;
+  padding-bottom: 0%;
+}
+
+
+.barra-lateral__logo-text {
+  font-family: 'Billabong', 'Dancing Script', cursive;
+  font-size: 26px;
+  color: #262626;
+  line-height: 1;
+  letter-spacing: -0.3px;
+  user-select: none;
+}
+
+
+.barra-lateral__nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.barra-lateral__nav-item {
+  width: 100%;
+}
+
+
+.barra-lateral__nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 12px 12px;
+  border-radius: 24px;
+  text-align: left;
+  transition: background-color 0.15s ease;
+  color: #262626;
+  text-decoration: none;
+}
+
+.barra-lateral__nav-btn:hover {
+  background-color: #f2f2f2;
+}
+
+.barra-lateral__nav-btn--active {
+  background-color: transparent;
+}
+
+
+.barra-lateral__nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: #262626;
+}
+
+.barra-lateral__nav-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
+.barra-lateral__nav-icon-img_Profile {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+  border-radius: 50%;
+}
+
+
+.barra-lateral__avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+.barra-lateral__nav-label {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #262626;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.barra-lateral__nav-label--bold {
+  font-weight: 700;
+}
+
+
+.barra-lateral__footer {
+  padding-bottom: 20px;
+  margin-top: auto;
+}
+
+.barra-lateral__footer .barra-lateral__nav-btn {
+  width: 100%;
+}
+

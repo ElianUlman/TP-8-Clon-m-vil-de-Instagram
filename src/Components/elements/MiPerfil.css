@@ -1,5 +1,58 @@
-.miPerfilImg{
-    height: 150px;
-    width: 150px;
-    border-radius:100px;
+/* MiPerfil.css */
+
+.mi-perfil {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.mi-perfil__foto {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background-color: #dbdbdb;
+}
+
+.mi-perfil__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.mi-perfil__usuario {
+  font-size: 13px;
+  font-weight: 600;
+  color: #262626;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mi-perfil__nombre-completo {
+  font-size: 13px;
+  color: #737373;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mi-perfil__switch {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0095f6;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.mi-perfil__switch:hover {
+  color: #00376b;
 }

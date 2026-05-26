@@ -1,8 +1,8 @@
 import { useState } from "react";
 import  Publicacion  from "../elements/Publicacion.jsx";
-//import { ListaSugeridosFeed } from "./ListaSugeridosFeed";
+import ListaSugeridosFeed  from "./ListaSugeridosFeed";
 
-export default function Feed({ publicaciones }) {
+export default function Feed({ publicaciones, sugeridos }) {
 
     return (
 
@@ -15,14 +15,14 @@ export default function Feed({ publicaciones }) {
                     <hr />
 
                     {
-                        /** 
-                        (index + 1) % 2 === 0 && (
+                        
+                        (index + 1) % 4 === 0 && (
                             <div>
-                                <ListaSugeridosFeed />
+                                <ListaSugeridosFeed ListaSugeridos={sugeridos}/>
                                 <hr />
                             </div>
                         )
-                        */
+                        
                     }
                 </div>
             ))}

@@ -1,19 +1,22 @@
 
 import CardSugerido from '../elements/CardSugerido'
+import "./ListaSugeridosFeed.css"
+
+function ListaSugeridosFeed({ ListaSugeridos }) {
 
 
-function ListaSugeridosFeed({ListaSugeridos}){
-
-
-    return(
-        <section>
+    return (
+        <section >
             <h1>Suggestions for you</h1>
             <h2>See all</h2>
-            {
-                ListaSugeridos.map((item, index) => (
-                    <CardSugerido url={item.url} breeds={item.breeds || null} id={item.id}/>
-                ))
-            }
+            <div className='ListaSugeridosFeedDiv'>
+                {
+                    ListaSugeridos.map((item, index) => (
+                        <CardSugerido perfil={item} />
+                    ))
+                }
+            </div>
+
         </section>
     )
 }

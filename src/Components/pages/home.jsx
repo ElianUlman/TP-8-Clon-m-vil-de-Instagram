@@ -9,6 +9,7 @@ function Home( ){
     const [sugeridos, setSugeridos] = useState()
     const [perfil, setPerfil] = useState()
     const [postsXAuthors, setpostsXAuthors] = useState()
+    const [perfilesCardSugeridos, setPerfilesCardSugeridos] = useState()
     
 
     useEffect(() => {
@@ -33,7 +34,7 @@ function Home( ){
                 const posts = await getXpics(10)
                 setpostsXAuthors(posts.map((post, index)=>{return {author: authors[index], ...post}}))
                 
-                
+                setPerfilesCardSugeridos(await getXpics(5))
             }
             
         }
@@ -47,7 +48,7 @@ function Home( ){
             
             {estados? < BarraEstados estados={estados}/> : <p>cargando...</p> }
             {(sugeridos && perfil) && <ListaSugeridosLateral ListaSugeridos={sugeridos} profile={perfil} /> }
-            {(postsXAuthors) ? <Feed publicaciones={postsXAuthors}/> : <p>cargando posts...</p> }
+            {(postsXAuthors && perfilesCardSugeridos) ? <Feed publicaciones={postsXAuthors} sugeridos={perfilesCardSugeridos}/> : <p>cargando posts...</p> }
 
         </section>
     )

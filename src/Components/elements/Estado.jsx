@@ -14,7 +14,7 @@ function Estado({nombrePerfil, img}){
     return(
 
         <div onClick={handleClick}>
-            <img src={img} alt="" />
+            <img className='estadoImg' src={img} alt="" />
             <p>{nombrePerfil}</p> 
             
             { 

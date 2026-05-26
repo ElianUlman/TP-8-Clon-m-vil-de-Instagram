@@ -5,9 +5,10 @@ function MiPerfil({ Profile }){
 
     return(
         <div>
-            <img src={ Profile.img } alt="" />
-            <p>{ Profile.nombre }</p>
+            <img className='miPerfilImg' src={ Profile.url } alt="" />
+            <p>{ Profile.nombre || "mi nombre"}</p>
             <button>Switch</button>
+            
         </div>
     )
 }

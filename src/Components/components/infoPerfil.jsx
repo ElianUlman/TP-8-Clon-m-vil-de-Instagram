@@ -9,7 +9,7 @@ function infoPerfil({ perfil }) {
         <div>
 
             <img src={perfil.url} alt="" />
-            <h5>{perfil.nombre}</h5>
+            <h5>{perfil.nombre || "nombre perfil"}</h5>
             <FollowBtn id = {perfil.id}/>
             <button>Message</button>
             <button><img src="" alt="" /></button>

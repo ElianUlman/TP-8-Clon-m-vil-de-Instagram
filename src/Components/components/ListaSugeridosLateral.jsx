@@ -11,7 +11,7 @@ function ListaSugeridosLateral({ ListaSugeridos, profile }) {
         <section>
 
             <MiPerfil Profile={profile}/>
-
+            
             <div>
                 <h5>Suggestions for you</h5>
                 <button>See all</button>
@@ -19,7 +19,7 @@ function ListaSugeridosLateral({ ListaSugeridos, profile }) {
 
             {
                 ListaSugeridos.map((item, index) => (
-                    <PerfilSugerido foto={item.url} nombre={item.nombrePerfil} id={item.id} key={index}/>  //la API no retorna un nombre.
+                    <PerfilSugerido foto={item.url} nombre={item.nombrePerfil || "nombre perfil"} id={item.id} key={index}/>  //la API no retorna un nombre.
                 ))
             }
 

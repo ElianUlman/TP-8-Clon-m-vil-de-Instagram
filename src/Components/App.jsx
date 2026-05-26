@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { get10pics } from "../api_connection/api.js"
+import { getXpics } from "../api_connection/api.js"
 import './App.css'
 import BarraLateral from './elements/BarraLateral.jsx'
 import BarraEstados from './components/BarraEstados.jsx'
@@ -40,11 +40,20 @@ function App() {
      
 
     <BrowserRouter>
+      <BarraLateral />
+      
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/miperfil' element={<MyProfile />} />
       </Routes>
-
+      {/**
+      <BarraLateral />
+      < BarraEstados estados={estados} />
+      <ListaSugeridosLateral ListaSugeridos={ListaSugeridos} profile={profile} /> 
+      
+      
+      
+      <ListaSugeridosFeed ListaSugeridos={ListaSugeridos} /> */}
     </BrowserRouter>
 
      

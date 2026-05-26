@@ -7,14 +7,17 @@ function FollowBtn({id}){
 
     
     const followCat = () =>{
+        const currentFollows=JSON.parse(localStorage.getItem("follows")) || []
+        localStorage.setItem("follows", JSON.stringify([...currentFollows, id]))
+        setFollows([...currentFollows, id])
         
-        localStorage.setItem("follows", JSON.stringify([...follows, id]))
-        setFollows([...follows, id])
     }
 
     const unfollowCat = ()=>{
-        setFollows(follows.filter(item => item !== id))
-        localStorage.setItem("follows", JSON.stringify(follows.filter(item => item !== id)))
+        const currentFollows=JSON.parse(localStorage.getItem("follows")) || []
+        setFollows(currentFollows.filter(item => item !== id))
+        localStorage.setItem("follows", JSON.stringify(currentFollows.filter(item => item !== id)))
+        
     }
   
     return(

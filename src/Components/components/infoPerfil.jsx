@@ -1,30 +1,27 @@
 import { useState } from 'react'
 import "./infoPerfil.css"
-import  FollowBtn  from "../elements/followBtn.jsx"
-import  BarraEstados  from "./BarraEstados.jsx" 
-function InfoPerfil({ perfil }) {
+import FollowBtn from "../elements/followBtn.jsx"
+import BarraEstados from "./BarraEstados.jsx"
 
+function InfoPerfil({ perfil, estados }) {
     return (
-
         <div>
-
             <img src={perfil.url} alt="" />
-            <h5>{perfil.nombre || "nombre perfil"}</h5>
-            <FollowBtn id = {perfil.id}/>
+            <h5>{perfil.nombre}</h5>
+            <FollowBtn id={perfil.id}/>
             <button>Message</button>
             <button><img src="" alt="" /></button>
             <button>...</button>
 
             <div>
-                <p>{perfil.posts.length} Posts</p>
-                <p>{perfil.followers.length} Follower</p>
-                <p>{perfil.following.length} Following</p>
+                <p>{perfil.posts} Posts</p>
+                <p>{perfil.followers} Followers</p>
+                <p>{perfil.following} Following</p>
             </div>
 
-            <p>{perfil.description}</p>
+            <p>{perfil.descripcion}</p>
 
-            <BarraEstados estados={perfil.estadosGuardados}/>
-            
+            <BarraEstados estados={estados.filter(e => perfil.estados.includes(e.id))}/>
         </div>
     )
 }

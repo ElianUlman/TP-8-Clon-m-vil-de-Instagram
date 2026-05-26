@@ -1,7 +1,7 @@
-import { use, useState } from 'react'
+import { useState } from 'react'
 import "./Estado.css"
 
-function Estado({nombrePerfil, img}){
+function Estado({ estado }){
 
     const [estadoVisto, setEstadoVisto] = useState(false)
 
@@ -12,15 +12,9 @@ function Estado({nombrePerfil, img}){
     }
 
     return(
-
         <div onClick={handleClick}>
-            <img className='estadoImg' src={img} alt="" />
-            <p>{nombrePerfil}</p> 
-            
-            { 
-            //la API no retorna un nombre.
-            }
-            
+            <img className='estadoImg' src={estado.img} alt="" />
+            <p>{estado.author.nombre}</p> 
         </div>
     )
 }

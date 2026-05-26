@@ -1,17 +1,13 @@
-
 import CardSugerido from '../elements/CardSugerido'
 
-
-function ListaSugeridosFeed({ListaSugeridos}){
-
-
+function ListaSugeridosFeed({ ListaPerfilesSugeridos }){
     return(
         <section>
             <h1>Suggestions for you</h1>
             <h2>See all</h2>
             {
-                ListaSugeridos.map((item, index) => (
-                    <CardSugerido url={item.url} breeds={item.breeds || null} id={item.id}/>
+                ListaPerfilesSugeridos.map((perfil, index) => (
+                    <CardSugerido key={index} perfil={perfil}/>
                 ))
             }
         </section>

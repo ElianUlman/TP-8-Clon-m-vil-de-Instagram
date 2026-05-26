@@ -7,7 +7,7 @@ export default function Publicacion({ publicacion }) {
 
       <div className="publicacion-header">
         <img className="avatar" src={publicacion.author.url} alt="avatar" />
-        <span className="username">{publicacion.nombre || "nombre Usuario"}</span>
+        <span className="username">{publicacion.author.nombre}</span>
       </div>
 
       <img className="imagen" src={publicacion.url} alt="post" />
@@ -19,15 +19,15 @@ export default function Publicacion({ publicacion }) {
         <button className="guardar"><img src="#" alt="" /></button>
       </div>
 
-      <div className="publicacion-likes">{publicacion.likes || 67} likes</div>
+      <div className="publicacion-likes">{publicacion.likes} likes</div>
 
       <div className="publicacion-descripcion">
-        <span className="username">{publicacion.username || "nombre usuario "}</span>
-        <span>{publicacion.descripcion || "descripcion de publicacion"}</span>
+        <span className="username">{publicacion.author.nombre}</span>
+        <span>{publicacion.descripcion}</span>
       </div>
 
       <div className="publicacion-comentarios">
-        Ver los {publicacion.cantidadComentarios || 67} comentarios
+        Ver los {publicacion.comentarios.length} comentarios
       </div>
 
       <input className="agregar-comentario" type="text" placeholder="Agregar un comentario..." />

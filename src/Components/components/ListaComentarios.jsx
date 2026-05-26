@@ -5,15 +5,9 @@ function ListaComentarios({ comentarios }){
     return(
         <>
             {
-                comentarios.map((comentario, index) =>{
-                    <div>
-                        <img src={comentario.autor.url} alt="" />
-                        <h5>{comentario.autor.nombre}</h5>
-                        <p>{comentario.contenido}</p>
-                        <button id="Like"></button>
-
-                    </div>
-                })
+                comentarios.map((comentario, index) => (
+                    <Comentario key={index} comentario={comentario} />
+                ))
             }
         </>
     )

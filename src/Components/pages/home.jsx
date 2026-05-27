@@ -112,15 +112,20 @@ function Home() {
     }, [])
 
     return (
-        <section>
+        <section className="home-layout">
             <BarraLateral />
-            <>
+
+            <div className="home-main">
                 {estados ? <BarraEstados estados={estados} /> : <p>cargando...</p>}
-                {(sugeridos && perfil) && <ListaSugeridosLateral ListaSugeridos={sugeridos} profile={perfil} />}
                 {(posts && perfilesCardSugeridos) ? <Feed publicaciones={posts} sugeridos={perfilesCardSugeridos} verPublicacion={verPublicacion} /> : <p>cargando posts...</p>}
-            </>
+            </div>
+
+            <div className="home-aside">
+                {(sugeridos && perfil) && <ListaSugeridosLateral ListaSugeridos={sugeridos} profile={perfil} />}
+            </div>
 
             {viendoPublicacion != null && <PublicacionEspecifica publicacion={viendoPublicacion} verPublicacion={verPublicacion} />}
+            
         </section>
     )
 }

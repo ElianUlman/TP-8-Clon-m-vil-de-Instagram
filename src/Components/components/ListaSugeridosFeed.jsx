@@ -14,11 +14,11 @@ function ListaSugeridosFeed({ ListaSugeridos }) {
             <div className="lista-sugeridos-feed__carrusel">
                 {
                     ListaSugeridos.map((item, index) => (
-                        <CardSugerido perfil={item} key={index}/>
+                        <CardSugerido perfil={item} />
                     ))
+                    
                 }
             </div>
-
         </section>
     )
 }

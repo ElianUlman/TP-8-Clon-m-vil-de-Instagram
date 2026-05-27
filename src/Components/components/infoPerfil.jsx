@@ -6,7 +6,6 @@ function InfoPerfil({ perfil }) {
     let miPerfil = JSON.parse(localStorage.getItem("myprofile")) || ""
     
     return (
-
         <div>
 
             <img src={perfil.url} alt="image nou work :c" />

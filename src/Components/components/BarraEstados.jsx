@@ -1,15 +1,13 @@
-import { use, useState } from 'react'
+import { useState } from 'react'
 import "./BarraEstados.css"
 import Estado from '../elements/Estado'
 
-function BarraEstados({estados}){
-
-
+function BarraEstados({ estados }){
     return(
         <section className="barra-estados">
             {
-                estados.map((item, index) => (
-                    <Estado   nombrePerfil = {item.nombrePerfil || "estado default"} className="estado__nombre estado__avatar" img = {item.url} key={index}/> //la API no retorna un nombre.
+                estados.map((estado, index) => (
+                    <Estado estado={estado} key={index}/>
                 ))
             }
         </section>  

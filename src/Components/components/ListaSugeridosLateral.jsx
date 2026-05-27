@@ -5,7 +5,6 @@ import MiPerfil from '../elements/MiPerfil'
 import Footer from '../elements/Footer'
 
 function ListaSugeridosLateral({ ListaSugeridos, profile }) {
-
     return (
         
         <section className="lista-sugeridos-lateral">
@@ -18,13 +17,12 @@ function ListaSugeridosLateral({ ListaSugeridos, profile }) {
             </div>
 
             {
-                ListaSugeridos.map((item, index) => (
-                    <PerfilSugerido foto={item.url} nombre={item.nombrePerfil || "nombre perfil"} id={item.id} key={index}/>  //la API no retorna un nombre.
+                ListaSugeridos.map((perfil, index) => (
+                    <PerfilSugerido perfil={perfil} key={index}/>
                 ))
             }
 
             <Footer/>
-
         </section>
     )
 }

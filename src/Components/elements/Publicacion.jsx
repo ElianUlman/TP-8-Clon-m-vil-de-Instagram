@@ -1,14 +1,19 @@
 import { useState } from "react";
 import "./Publicacion.css";
 
-export default function Publicacion({ publicacion }) {
+export default function Publicacion({ publicacion, verPublicacion }) {
+  
+  const handleClick = () => {
+    verPublicacion(publicacion)
+  }
+
   return (
-    <div className="publicacion">
+    <div className="publicacion" onClick={handleClick}>
 
       <div className="publicacion__header">
         <img className="publicacion__avatar" src={publicacion.author.url} alt="avatar" />
         <div className="publicacion__header-info">
-          <span className="publicacion__username">{publicacion.nombre || "nombre Usuario"}</span>
+          <span className="publicacion__username">{publicacion.author.nombre}</span>
           <span className="publicacion__tiempo">• 5h</span>
         </div>
         <button className="publicacion__opciones">···</button>
@@ -33,7 +38,7 @@ export default function Publicacion({ publicacion }) {
       </div>
 
       <div className="publicacion__comentarios">
-        Ver los {publicacion.cantidadComentarios || 67} comentarios
+        Ver los {publicacion.comentarios.length || 67} comentarios
       </div>
 
       <input className="publicacion__agregar-comentario" type="text" placeholder="Agregar un comentario..." disabled/>

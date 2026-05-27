@@ -1,7 +1,7 @@
-import { use, useState } from 'react'
+import { useState } from 'react'
 import "./Estado.css"
 
-function Estado({nombrePerfil, img}){
+function Estado({ estado }){
 
     const [estadoVisto, setEstadoVisto] = useState(false)
 
@@ -14,8 +14,8 @@ function Estado({nombrePerfil, img}){
     return(
 
         <div className={`estado ${estadoVisto ? 'estado--visto' : ''}`} onClick={handleClick}>
-            <img className='estado__avatar' src={img} alt="" />
-            <p className='estado__nombre'>{nombrePerfil}</p> 
+            <img className='estado__avatar' src={estado.url} alt="" />
+            <p className='estado__nombre'>{estado.author?.nombre || "nombre"}</p> 
         </div>
     )
 }

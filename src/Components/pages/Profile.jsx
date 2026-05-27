@@ -2,6 +2,7 @@ import { use, useState, useEffect } from 'react'
 import { getXpics, getCatById } from '../../api_connection/api'
 import InfoPerfil from "../components/infoPerfil.jsx"
 import PublicacionesPerfil from '../components/PublicacionesPerfil.jsx'
+import BarraLateral from '../elements/BarraLateral'
 
 function Profile() {
 

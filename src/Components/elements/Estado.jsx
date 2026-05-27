@@ -13,8 +13,8 @@ function Estado({ estado }){
 
     return(
         <div onClick={handleClick}>
-            <img className='estadoImg' src={estado.img} alt="" />
-            <p>{estado.author.nombre}</p> 
+            <img className='estadoImg' src={estado.url} alt="" />
+            <p>{estado.author?.nombre || "nombre"}</p> 
         </div>
     )
 }

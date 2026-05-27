@@ -12,9 +12,11 @@ function Home() {
     const [posts, setPosts] = useState()
     const [viendoPublicacion, setViendoPublicacion] = useState(null)
     const [authors, setAuthors] = useState()
+    const [perfilesCardSugeridos, setPerfilesCardSugeridos] = useState()
 
-    const verPublicacion = () => {
-        setViendoPublicacion
+    const verPublicacion = (publicacion) => {
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        setViendoPublicacion(publicacion)
     }
 
     useEffect(() => {
@@ -22,7 +24,6 @@ function Home() {
         async function loadData() {
             if (estados == null) {
 
-                // --- perfil ---
                 let perfilData = JSON.parse(localStorage.getItem("myprofile")) || ""
                 if (perfilData == "") {
                     const perfilPic = await getXpics(1)
@@ -63,22 +64,21 @@ function Home() {
                 const builtAuthors = [perfilAuthor, ...otrosAuthors]
                 setAuthors(builtAuthors)
 
-                // --- sugeridos desde authors, sin incluir el perfil propio ---
                 setSugeridos(builtAuthors.slice(1, 6))
 
-                // --- lista global de estados ---
+                setPerfilesCardSugeridos(builtAuthors.slice(6, 11))
+
                 const builtEstados = allEstadoPics.map((pic, i) => {
                     const author = builtAuthors.find(a => a.estados.includes(i))
                     return {
                         id: i,
-                        img: pic.url,
+                        url: pic.url,
                         author
                     }
                 })
 
                 setEstados(builtEstados)
 
-                // --- posts ---
                 const postPics = await getXpics(10)
 
                 const builtPosts = postPics.map((pic, i) => {
@@ -111,15 +111,14 @@ function Home() {
 
     return (
         <section>
-            {viendoPublicacion === null && (
-                <>
-                    {estados ? <BarraEstados estados={estados} /> : <p>cargando...</p>}
-                    {(sugeridos && perfil) && <ListaSugeridosLateral ListaSugeridos={sugeridos} profile={perfil} />}
-                    {posts ? <Feed publicaciones={posts} /> : <p>cargando posts...</p>}
-                </>
-            )}
 
-            {viendoPublicacion != null && <PublicacionEspecifica publicacion={viendoPublicacion} />}
+            <>
+                {estados ? <BarraEstados estados={estados} /> : <p>cargando...</p>}
+                {(sugeridos && perfil) && <ListaSugeridosLateral ListaSugeridos={sugeridos} profile={perfil} />}
+                {(posts && perfilesCardSugeridos) ? <Feed publicaciones={posts} sugeridos={perfilesCardSugeridos} verPublicacion={verPublicacion} /> : <p>cargando posts...</p>}
+            </>
+
+            {viendoPublicacion != null && <PublicacionEspecifica publicacion={viendoPublicacion} verPublicacion={verPublicacion} />}
         </section>
     )
 }

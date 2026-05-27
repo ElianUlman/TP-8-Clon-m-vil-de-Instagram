@@ -1,9 +1,14 @@
 import { useState } from "react";
 import "./Publicacion.css";
 
-export default function Publicacion({ publicacion }) {
+export default function Publicacion({ publicacion, verPublicacion }) {
+  
+  const handleClick = () => {
+    verPublicacion(publicacion)
+  }
+
   return (
-    <div className="publicacion">
+    <div className="publicacion" onClick={handleClick}>
 
       <div className="publicacion-header">
         <img className="avatar" src={publicacion.author.url} alt="avatar" />

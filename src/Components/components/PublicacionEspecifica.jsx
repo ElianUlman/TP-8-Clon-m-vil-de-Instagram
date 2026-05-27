@@ -1,10 +1,15 @@
 import "./PublicacionEspecifica.css"
 import ListaComentarios from "./ListaComentarios"
 
-function PublicacionEspecifica({ publicacion }) {
+function PublicacionEspecifica({ publicacion, verPublicacion }) {
+    
+    const handleClose = () => {
+        verPublicacion(null)
+    }
+
     return (
         <div id="FondoOscuro">
-            <button id="Cerrar">X</button>
+            <button id="Cerrar" onClick={handleClose}>X</button>
             <div id="Popup">
                 <img src={publicacion.url} alt="" />
                 <ListaComentarios comentarios={publicacion.comentarios} />

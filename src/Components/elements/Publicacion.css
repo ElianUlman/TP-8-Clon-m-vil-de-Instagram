@@ -1,9 +1,132 @@
-.avatar{
-    height: 70px;
-    width: 70px;
-    border-radius: 50px;
+
+.publicacion {
+  width: 100%;
+  background-color: #fff;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-.imagen{
-    width: 40%;
+
+.publicacion__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+}
+
+.publicacion__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #dbdbdb;
+}
+
+.publicacion__header-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.publicacion__username {
+  font-size: 13px;
+  font-weight: 600;
+  color: #262626;
+}
+
+.publicacion__tiempo {
+  font-size: 13px;
+  color: #737373;
+}
+
+.publicacion__opciones {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #262626;
+  letter-spacing: 1px;
+  padding: 0;
+}
+
+
+.publicacion__imagen {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+.publicacion__acciones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px 4px;
+}
+
+.publicacion__acciones-izquierda {
+  display: flex;
+  gap: 4px;
+}
+
+.publicacion__btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  padding: 4px;
+}
+
+.publicacion__btn--guardar {
+  font-size: 22px;
+}
+
+.publicacion__likes {
+  font-size: 13px;
+  font-weight: 600;
+  color: #262626;
+  padding: 0 16px;
+  margin-bottom: 6px;
+}
+
+
+.publicacion__descripcion {
+  font-size: 13px;
+  color: #262626;
+  padding: 0 16px;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.publicacion__texto {
+  font-weight: 400;
+}
+
+
+.publicacion__comentarios {
+  font-size: 13px;
+  color: #737373;
+  padding: 0 16px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.publicacion__comentarios:hover {
+  color: #262626;
+}
+
+.publicacion__agregar-comentario {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #dbdbdb;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #262626;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.publicacion__agregar-comentario::placeholder {
+  color: #737373;
 }

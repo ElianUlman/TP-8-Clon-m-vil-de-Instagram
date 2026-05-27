@@ -1,0 +1,20 @@
+.feed {
+  width: 100%;
+  max-width: 614px;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.feed__item {
+  width: 100%;
+}
+
+.feed__separador {
+  border: none;
+  border-top: 1px solid #dbdbdb;
+  margin: 0;
+}
+
+.feed__sugeridos {
+  background-color: #fff;
+}

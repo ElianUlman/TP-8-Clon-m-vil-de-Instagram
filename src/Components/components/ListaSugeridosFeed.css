@@ -1,6 +1,44 @@
-.ListaSugeridosFeedDiv{
-    width: 100%;
+.lista-sugeridos-feed {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #fff;
+  margin: 8px 0;
+}
 
+.lista-sugeridos-feed__header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  margin-bottom: 12px;
+}
 
+.lista-sugeridos-feed__titulo {
+  font-size: 14px;
+  font-weight: 600;
+  color: #737373;
+  margin: 0;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.lista-sugeridos-feed__ver-todos {
+  font-size: 12px;
+  font-weight: 600;
+  color: #262626;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.lista-sugeridos-feed__ver-todos:hover {
+  color: #737373;
+}
+
+.lista-sugeridos-feed__carrusel {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 0 16px;
 }

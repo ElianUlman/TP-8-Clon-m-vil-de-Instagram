@@ -1,4 +1,3 @@
-/* ── Contenedor principal de estados ── */
 .barra-estados {
   display: flex;
   gap: 16px;
@@ -8,7 +7,6 @@
   background-color: #ffffff;
 }
 
-/* ── Wrapper blanco que separa el avatar del anillo ── */
 .estado__avatar-wrapper {
   width: 56px;
   height: 56px;
@@ -20,8 +18,7 @@
   align-items: center;
   justify-content: center;
 }
- 
-/* ── Imagen del avatar ── */
+
 .estado__avatar {
   width: 100%;
   height: 100%;
@@ -30,8 +27,7 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: block;
 }
- 
-/* ── Nombre del perfil debajo ── */
+
 .estado__nombre {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size: 12px;

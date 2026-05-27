@@ -13,8 +13,6 @@ function App() {
      
 
     <BrowserRouter>
-      <BarraLateral />
-      
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/miperfil' element={<Profile />} />

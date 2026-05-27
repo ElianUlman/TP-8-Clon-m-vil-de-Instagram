@@ -68,6 +68,7 @@ function Profile() {
 
     return (
         <section>
+            <BarraLateral />
             {isLoaded && <InfoPerfil perfil={miPerfil}/>}
             {isLoaded && <PublicacionesPerfil perfil={miPerfil}/>}
         </section>

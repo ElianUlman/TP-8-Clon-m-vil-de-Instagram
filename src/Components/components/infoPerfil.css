@@ -1,0 +1,137 @@
+/* infoPerfil.css */
+
+.info-perfil {
+  width: 100%;
+  padding-bottom: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Header: foto + datos */
+.info-perfil__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+  padding: 24px 0;
+}
+
+/* Foto */
+.info-perfil__foto {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background-color: #dbdbdb;
+  border: 3px solid transparent;
+  outline: 2px solid #dbdbdb;
+}
+
+/* Columna derecha */
+.info-perfil__datos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Fila nombre + acciones */
+.info-perfil__fila-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.info-perfil__nombre {
+  font-size: 20px;
+  font-weight: 400;
+  color: #262626;
+  margin: 0;
+}
+
+.info-perfil__acciones {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-perfil__btn-follow, .info-perfil__btn-añadir, .info-perfil__btn-message {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 38px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #262626;
+  background-color: #efefef;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.info-perfil__btn-follow{
+  min-width: 110px;
+}
+
+.info-perfil__btn-añadir {
+  min-width: 40px;
+}
+
+.info-perfil__btn-message {
+  min-width: 70px;
+}
+
+.info-perfil__btn-añadir img{
+  width: 16px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.info-perfil__btn-follow img{
+  width: 100px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.info-perfil__btn-añadir:hover, .info-perfil__btn-follow:hover, .info-perfil__btn-message:hover {
+  background-color: #dbdbdb;
+}
+
+.info-perfil__btn-mas {
+  font-size: 18px;
+  color: #262626;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  letter-spacing: 1px;
+}
+
+/* Stats */
+.info-perfil__stats {
+  display: flex;
+  gap: 40px;
+}
+
+.info-perfil__stat {
+  font-size: 15px;
+  color: #262626;
+}
+
+.info-perfil__stat strong {
+  font-weight: 600;
+}
+
+/* Descripcion */
+.info-perfil__descripcion {
+  font-size: 14px;
+  color: #262626;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Estados */
+.info-perfil__estados {
+  margin-top: 16px;
+}

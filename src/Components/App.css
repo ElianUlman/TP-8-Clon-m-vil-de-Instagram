@@ -18,3 +18,24 @@
   position: sticky;
   top: 24px;
 }
+
+.profile-layout {
+  display: flex;
+  margin-left: 244px;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.profile-main {
+  flex: 1;
+  max-width: 935px;
+  padding: 30px 20px;
+  margin: 0 auto;
+}
+
+.profile-cargando {
+  font-size: 14px;
+  color: #737373;
+  text-align: center;
+  margin-top: 48px;
+}

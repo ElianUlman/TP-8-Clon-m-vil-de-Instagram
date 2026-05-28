@@ -3,6 +3,7 @@ import { getXpics, getCatById } from '../../api_connection/api'
 import InfoPerfil from "../components/infoPerfil.jsx"
 import PublicacionesPerfil from '../components/PublicacionesPerfil.jsx'
 import BarraLateral from '../elements/BarraLateral'
+import "../App.css"
 
 function Profile() {
 
@@ -68,10 +69,20 @@ function Profile() {
     }, [])
 
     return (
-        <section>
+        <section className="profile-layout">
+
             <BarraLateral />
-            {isLoaded && <InfoPerfil perfil={miPerfil}/>}
-            {isLoaded && <PublicacionesPerfil perfil={miPerfil}/>}
+
+            <div className="profile-main">
+                {isLoaded
+                    ? <>
+                        <InfoPerfil perfil={miPerfil} />
+                        <PublicacionesPerfil perfil={miPerfil} />
+                      </>
+                    : <p className="profile-cargando">cargando...</p>
+                }
+            </div>
+
         </section>
     )
 }

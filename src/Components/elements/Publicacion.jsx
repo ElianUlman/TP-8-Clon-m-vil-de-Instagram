@@ -23,11 +23,11 @@ export default function Publicacion({ publicacion, verPublicacion }) {
 
       <div className="publicacion__acciones">
         <div className="publicacion__acciones-izquierda">
-          <button className="publicacion__btn"><img src="../../img/Likes.png" alt="like" /></button>
-          <button className="publicacion__btn"><img src="../img/Comentarios.png" alt="comentar" /></button>
-          <button className="publicacion__btn"><img src="img/Compartir.png" alt="compartir" /></button>
+          <button className="publicacion__btn"><img src="../src/img/Likes.png" alt="like" /></button>
+          <button className="publicacion__btn"><img src="../src/img/Comentarios.png" alt="comentar" /></button>
+          <button className="publicacion__btn"><img src="../src/img/Compartir.png" alt="compartir" /></button>
         </div>
-        <button className="publicacion__btn publicacion__btn--guardar"><img src="../../img/guardar.png" alt="guardar" /></button>
+        <button className="publicacion__btn publicacion__btn--guardar"><img src="../src/img/guardar.png" alt="guardar" /></button>
       </div>
 
       <div className="publicacion__likes">{publicacion.likes || 67} likes</div>

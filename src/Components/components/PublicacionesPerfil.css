@@ -1,0 +1,77 @@
+/* PublicacionesPerfil.css */
+
+.publicaciones-perfil {
+  width: 100%;
+  margin-top: 24px;
+}
+
+/* Tabs */
+.publicaciones-perfil__tabs {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid #dbdbdb;
+  margin-bottom: 4px;
+}
+
+.publicaciones-perfil__tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 24px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #737373;
+  background: none;
+  border: none;
+  border-top: 2px solid transparent;
+  cursor: pointer;
+  margin-top: -1px;
+}
+
+.publicaciones-perfil__tab img {
+  width: 14px;
+  height: 14px;
+  opacity: 0.5;
+}
+
+.publicaciones-perfil__tab:hover {
+  color: #262626;
+}
+
+.publicaciones-perfil__tab--activa {
+  color: #262626;
+  border-top: 2px solid #262626;
+}
+
+.publicaciones-perfil__tab--activa img {
+  opacity: 1;
+}
+
+/* Grid */
+.publicaciones-perfil__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.publicaciones-perfil__item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.publicaciones-perfil__item:hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.publicaciones-perfil__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

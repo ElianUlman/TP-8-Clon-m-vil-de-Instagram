@@ -2,12 +2,14 @@ import "./Comentario.css"
 
 function Comentario({ comentario }){
     return(
-        <>
-            <img src={comentario.author.url} alt={comentario.author.nombre} />
-            <p>{comentario.author.nombre}</p>
-            <p>{comentario.contenido}</p>
-            <button>Like</button>
-        </>
+        <div className="comentario">
+            <img className="comentario-avatar" src={comentario.author.url} alt={comentario.author.nombre} />
+            <div className="comentario-texto">
+                <p className="comentario-autor">{comentario.author.nombre}</p>
+                <p className="comentario-contenido">{comentario.contenido}</p>
+            </div>
+            <button className="comentario-like">♡</button>
+        </div>
     )
 }
 

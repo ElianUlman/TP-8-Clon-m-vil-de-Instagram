@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 function BarraLateral() {
     ///miperfil
     const navigate = useNavigate();
-
+    let miPerfil = JSON.parse(localStorage.getItem("myprofile")) || ""
+    
     return (
 
         <section className="barra-lateral">
@@ -18,7 +19,7 @@ function BarraLateral() {
                 <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn"><img src="../src/img/messages.png" alt="Messages" className="barra-lateral__nav-icon-img" /><span className="barra-lateral__nav-label">Messages</span></button></li>
                 <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn"><img src="../src/img/notifications.png" alt="Notifications" className="barra-lateral__nav-icon-img" /><span className="barra-lateral__nav-label">Notifications</span></button></li>
                 <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn"><img src="../src/img/create.png" alt="Create" className="barra-lateral__nav-icon-img" /><span className="barra-lateral__nav-label">Create</span></button></li>
-                <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn" onClick={() => navigate('/miperfil')}><img src="../src/img/profile.png" alt="Profile" className="barra-lateral__avatar" /><span className="barra-lateral__nav-label">Profile</span></button></li>
+                <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn" onClick={() => navigate('/miperfil')}><img src={miPerfil.url} alt="Profile" className="barra-lateral__avatar" /><span className="barra-lateral__nav-label">Profile</span></button></li>
                 <li className="barra-lateral__nav-item"><button className="barra-lateral__nav-btn"><img src="../src/img/more.png" alt="More" className="barra-lateral__nav-icon-img" /><span className="barra-lateral__nav-label">More</span></button></li>
             </ul>
         </section>

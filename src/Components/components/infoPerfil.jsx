@@ -17,13 +17,16 @@ function InfoPerfil({ perfil }) {
 
                     <div className="info-perfil__fila-top">
                         <h2 className="info-perfil__nombre">{perfil.nombre || "nombre perfil"}</h2>
-
+                        {/**
                         <div className="info-perfil__acciones">
                             <button className="info-perfil__btn-follow"><img src="../src/img/following.png" alt="flecha" /></button>
                             <button className="info-perfil__btn-message">Message</button>
                             <button className="info-perfil__btn-añadir"><img src="../src/img/añadir.png" alt="Añadir" /></button>
                             <button className="info-perfil__btn-mas">···</button>
                         </div>
+                        */}
+                        
+                        
                     </div>
 
                     <div className="info-perfil__stats">

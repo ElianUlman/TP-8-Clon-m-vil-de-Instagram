@@ -17,12 +17,13 @@ export async function fetchImages(query = 'nature', count = 10) {
         per_page: count,
       },
     });
-
+    
     return response.data.photos.map((photo) => ({
       id: photo.id,
       url: photo.src.medium,
       urlFull: photo.src.large,
       photographer: photo.photographer,
+      description: photo.alt
     }));
   } catch (error) {
     console.log('Error al traer imágenes:', error);

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, Pressable, Text } from 'react-native';
 import { AuthContext } from '../context/AuthContext';
 
 export default function Login() {
@@ -39,7 +39,7 @@ export default function Login() {
                 autoCapitalize="none"
                 autoCorrect={false}
             />
-            <Button title="Login" onPress={handleSubmit} />
+            <Pressable onPress={handleSubmit}><Text>Log in</Text></Pressable>
         </View>
     )
 }

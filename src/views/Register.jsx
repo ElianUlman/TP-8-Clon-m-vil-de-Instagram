@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, Pressable, Text } from 'react-native';
 
 export default function Register() {
 
@@ -33,7 +33,8 @@ export default function Register() {
                 autoCapitalize="none"
                 autoCorrect={false}
             />
-            <Button title="Register" onPress={handleSubmit} />
+            <Pressable onPress={handleSubmit}><Text>Register</Text></Pressable>
+            
         </View>
     )
 }

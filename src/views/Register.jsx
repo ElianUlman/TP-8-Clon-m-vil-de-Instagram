@@ -12,7 +12,8 @@ export default function Register() {
     const handleSubmit = () => {
         setUser({
             username,
-            password
+            password,
+            searchHistory: []
         })
         setIsAuthenticated(true)
         console.log(username, password)

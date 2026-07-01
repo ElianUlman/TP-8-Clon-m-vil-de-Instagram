@@ -1,12 +1,13 @@
 import { TextInput, StyleSheet } from 'react-native';
 
-export default function SearchBar({ setSearchText, searchText }) {
+export default function SearchBar({ setSearchText, searchText, onSubmit }) {
 
     return (
         <TextInput
             value={searchText}
             style={styles.searchBar}
             onChangeText={(text) => setSearchText(text)}
+            onSubmitEditing={onSubmit}
             placeholder="search 4 shit"
             placeholderTextColor="#999"
         />

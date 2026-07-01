@@ -17,8 +17,24 @@ export function AuthProvider({ children }) {
       console.error('Error al guardar datos:', error);
     }
   }
+
+  const addSearchHistory = async (newSearch) => {
+    if (!newSearch || !newSearch.trim()) return;
+
+    const historialActual = user.searchHistory || [];
+    const sinDuplicados = historialActual.filter(
+      (item) => item.toLowerCase() !== newSearch.toLowerCase()
+    );
+    const nuevoHistorial = [newSearch, ...sinDuplicados];
+
+    setUser({
+      ...user,
+      searchHistory: nuevoHistorial
+    })
+  }
+
   return (
-    <AuthContext.Provider value={{ user, setUser, isAuthenticated, setIsAuthenticated }}>
+    <AuthContext.Provider value={{ user, setUser, isAuthenticated, setIsAuthenticated, addSearchHistory }}>
       {children}
     </AuthContext.Provider>
   );

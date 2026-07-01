@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, Image, StyleSheet, ActivityIndicator, Text } from 'react-native';
+import { View, FlatList, Image, StyleSheet, ActivityIndicator, Text, TextInput } from 'react-native';
 import { fetchImages } from '../services/imageService';
 
 export default function Feed() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [searchText, setSearchText] = useState();
+
   useEffect(() => {
     const cargarImagenes = async () => {
       try {
-        const data = await fetchImages('star trek', 15);
+        const data = await fetchImages(searchText, 15);
         setImages(data);
       } catch (e) {
         console.log('No se pudieron cargar las imágenes');
@@ -19,7 +21,7 @@ export default function Feed() {
     };
 
     cargarImagenes();
-  }, []);
+  }, [searchText]);
 
   if (loading) {
     return (
@@ -30,18 +32,28 @@ export default function Feed() {
   }
 
   return (
-    <FlatList
-      data={images}
-      keyExtractor={(item) => item.id.toString()}
-      numColumns={2}
-      contentContainerStyle={styles.list}
-      renderItem={({ item }) => (
-        <View style={styles.card}>
-          <Image source={{ uri: item.url }} style={styles.image} />
-          <Text style={styles.caption}>{item.photographer}</Text>
-        </View>
-      )}
-    />
+    <View style={{ flex: 1 }}>
+      <TextInput
+        value={searchText}
+        style={styles.searchBar}
+        onChangeText={(text) => setSearchText(text)}
+        placeholder="search 4 shit"
+        placeholderTextColor="#999"
+      />
+      <FlatList
+        data={images}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+        contentContainerStyle={styles.list}
+        renderItem={({ item }) => (
+          <View style={styles.card}>
+            <Image source={{ uri: item.url }} style={styles.image} />
+            <Text style={styles.caption}>{item.photographer}</Text>
+            <Text style={styles.caption}>{item.description}</Text>
+          </View>
+        )}
+      />
+    </View>
   );
 }
 
@@ -51,4 +63,14 @@ const styles = StyleSheet.create({
   card: { flex: 1, margin: 4 },
   image: { width: '100%', height: 150, borderRadius: 8 },
   caption: { fontSize: 12, color: '#666', marginTop: 2 },
+  searchBar: {
+    marginTop: 20,
+    marginHorizontal: 10,
+    height: 45,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    backgroundColor: "white",
+  },
 });

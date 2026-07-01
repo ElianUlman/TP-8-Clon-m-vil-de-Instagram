@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, Image, StyleSheet, ActivityIndicator, Text, TextInput } from 'react-native';
 import { fetchImages } from '../services/imageService';
-import BarraEstados from './barraEstados';
+import BarraEstados from './BarraEstados.jsx';
 
 export default function Feed() {
   const [images, setImages] = useState([]);

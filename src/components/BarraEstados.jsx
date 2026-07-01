@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
-import { Button, View, Text, Image } from 'react-native';
-import Estado from './Estado';
+import { Button, View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import Estado from './Estado.jsx';
 
 
-export default function BarraEstados(props) {
-  console.log("props:", props);
-  console.log("userList:", props.userList);
-  console.log("isArray:", Array.isArray(props.userList));
-
-  if (!Array.isArray(props.userList)) {
-    return <Text>Not an array</Text>;
-  }
-
+export default function BarraEstados({userList}) {
+  
   return (
-    <>
-      {props.userList.map((element) => (
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      style={styles.container}
+      contentContainerStyle={styles.content}
+    >
+      {userList.map((element) => (
         <Estado key={element.id} user={element} />
       ))}
-    </>
+    </ScrollView>
+    
   );
 }
+
+
+const styles = StyleSheet.create({
+    barraEstados: { height: 50},
+
+
+})

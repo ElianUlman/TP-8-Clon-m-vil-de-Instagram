@@ -3,3 +3,4 @@ Figma:https://www.figma.com/design/3ZtWDcpQcoKH9YASwDpHnj/Instagram-UI-Profile--
 Achear statusBar
 App.js
 https://lucide.dev/icons/
+no use botton y TouchableOpacity 

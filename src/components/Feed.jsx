@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, Image, StyleSheet, ActivityIndicator, Text, TextInput } from 'react-native';
 import { fetchImages } from '../services/imageService';
+import BarraEstados from './barraEstados';
 
 export default function Feed() {
   const [images, setImages] = useState([]);
@@ -33,6 +34,9 @@ export default function Feed() {
 
   return (
     <View style={{ flex: 1 }}>
+      
+      <BarraEstados userList={images}></BarraEstados>
+
       <TextInput
         value={searchText}
         style={styles.searchBar}

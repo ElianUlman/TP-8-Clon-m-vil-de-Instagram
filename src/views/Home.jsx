@@ -16,7 +16,7 @@ export default function Home() {
                 title="Go to Profile"
                 onPress={() => navigation.navigate('Profile')} 
             />
-
+            
             <Feed />
         </>
 

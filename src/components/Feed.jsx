@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, FlatList, Image, StyleSheet, ActivityIndicator, Text, TextInput } from 'react-native';
 import { fetchImages } from '../services/imageService';
 
-export default function Feed() {
+export default function Feed({ searchText = "communism" }) {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const [searchText, setSearchText] = useState();
 
   useEffect(() => {
     const cargarImagenes = async () => {
@@ -33,13 +31,6 @@ export default function Feed() {
 
   return (
     <View style={{ flex: 1 }}>
-      <TextInput
-        value={searchText}
-        style={styles.searchBar}
-        onChangeText={(text) => setSearchText(text)}
-        placeholder="search 4 shit"
-        placeholderTextColor="#999"
-      />
       <FlatList
         data={images}
         keyExtractor={(item) => item.id.toString()}
@@ -72,5 +63,5 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 10,
     backgroundColor: "white",
-  },
+  }
 });

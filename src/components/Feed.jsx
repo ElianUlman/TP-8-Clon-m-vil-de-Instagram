@@ -9,7 +9,7 @@ export default function Feed() {
   useEffect(() => {
     const cargarImagenes = async () => {
       try {
-        const data = await fetchImages('nature', 15);
+        const data = await fetchImages('star trek', 15);
         setImages(data);
       } catch (e) {
         console.log('No se pudieron cargar las imágenes');

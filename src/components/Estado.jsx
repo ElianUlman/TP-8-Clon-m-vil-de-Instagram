@@ -19,7 +19,7 @@ export default function Estado({user}) {
 }
 
 const styles = StyleSheet.create({
-    image: { width: '100%', height: 150, borderRadius: 8 },
+    image: { width: 150, height: 150, borderRadius: 13000, marginRight: 20 },
 
 
 })

@@ -5,7 +5,7 @@ import { Button, View, Text, Image, StyleSheet } from 'react-native';
 
 
 export default function Post({post}) {
-    console.log(post)
+    
     return (
         <>
             <View>

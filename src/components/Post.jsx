@@ -10,6 +10,7 @@ export default function Post({post}) {
         <>
             <View>
                 <Image source={{uri: post.url,}} style={styles.pfp}></Image><Text>{post.photographer}</Text>
+                <Text>Sugerencia para ti</Text>
                 <Image source={{uri: post.url}} style={styles.image}></Image>
 
                 <Text>likes: *number*</Text>

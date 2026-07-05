@@ -4,14 +4,13 @@ import { fetchImages } from '../services/imageService';
 import BarraEstados from './BarraEstados.jsx';
 import Post from './Post.jsx';
 
-export default function Feed() {
+export default function Feed({ searchText = "communism" }) {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [searchText, setSearchText] = useState();
-
   useEffect(() => {
     const cargarImagenes = async () => {
+      setLoading(true);
       try {
         const data = await fetchImages(searchText, 15);
         setImages(data);
@@ -64,14 +63,4 @@ const styles = StyleSheet.create({
   card: { flex: 1, margin: 4 },
   image: { width: '100%', height: 150, borderRadius: 8 },
   caption: { fontSize: 12, color: '#666', marginTop: 2 },
-  searchBar: {
-    marginTop: 20,
-    marginHorizontal: 10,
-    height: 45,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    backgroundColor: "white",
-  },
 });

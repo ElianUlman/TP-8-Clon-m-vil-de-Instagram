@@ -1,54 +1,68 @@
-import React, { useState, useContext } from 'react';
-import { View, FlatList, Image, StyleSheet, ActivityIndicator, Text, TextInput, Pressable } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, ActivityIndicator, FlatList, Image, StyleSheet, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import SearchBar from '../components/SearchBar';
-
-import { AuthContext } from '../context/AuthContext';
-
+import { fetchImages } from '../services/imageService';
 
 export default function SearchView() {
+  const navigation = useNavigation();
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    const [searchText, setSearchText] = useState('');
-    const { user, addSearchHistory } = useContext(AuthContext);
-    const navigation = useNavigation();
-
-    const handleSearch = (query) => {
-        if (!query || !query.trim()) return;
-        addSearchHistory(query);
-        navigation.navigate('Home', { searchText: query });
+  useEffect(() => {
+    const cargarImagenes = async () => {
+      setLoading(true);
+      try {
+        const data = await fetchImages('travel', 18);
+        setImages(data);
+      } catch (error) {
+        console.log('No se pudieron cargar las imágenes de búsqueda');
+      } finally {
+        setLoading(false);
+      }
     };
 
-    const ultimasBusquedas = (user?.searchHistory || []).slice(0, 5);
+    cargarImagenes();
+  }, []);
 
-    return (
-        <View style={{ flex: 1 }}>
-            <SearchBar
-                setSearchText={setSearchText}
-                searchText={searchText}
-                onSubmit={() => handleSearch(searchText)}
-            />
+  return (
+    <View style={styles.container}>
+      <SearchBar
+        searchText=""
+        setSearchText={() => {}}
+        editable={false}
+        placeholder="Buscar"
+        onPress={() => navigation.navigate('SearchInput')}
+      />
 
-            {ultimasBusquedas.length > 0 && (
-                <View style={{ paddingHorizontal: 10, marginTop: 15 }}>
-                    <Text style={{ fontWeight: 'bold', marginBottom: 6 }}>Últimas búsquedas</Text>
-                    {ultimasBusquedas.map((item, index) => (
-                        <Pressable
-                            key={`${item}-${index}`}
-                            onPress={() => handleSearch(item)}
-                            style={{
-                                paddingVertical: 8,
-                                paddingHorizontal: 12,
-                                backgroundColor: '#eee',
-                                borderRadius: 8,
-                                marginBottom: 6,
-                            }}
-                        >
-                            <Text>{item}</Text>
-                        </Pressable>
-                    ))}
-                </View>
-            )}
+      <Text style={styles.sectionTitle}>Explorar</Text>
+
+      {loading ? (
+        <View style={styles.center}>
+          <ActivityIndicator size="large" />
         </View>
-    )
+      ) : (
+        <FlatList
+          data={images}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={3}
+          contentContainerStyle={styles.list}
+          columnWrapperStyle={styles.columnWrapper}
+          renderItem={({ item }) => (
+            <Image source={{ uri: item.url }} style={styles.image} />
+          )}
+        />
+      )}
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: 'white' },
+  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  sectionTitle: { fontSize: 16, fontWeight: '700', marginHorizontal: 12, marginTop: 10, marginBottom: 8 },
+  list: { paddingHorizontal: 2, paddingBottom: 8 },
+  columnWrapper: { justifyContent: 'space-between' },
+  image: { width: '32%', aspectRatio: 1, marginBottom: 2, borderRadius: 2 },
+});

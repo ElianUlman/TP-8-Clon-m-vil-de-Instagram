@@ -14,7 +14,7 @@ import HomeView from './src/views/Home';
 import ProfileView from './src/views/Profile';
 import LoginView from './src/views/Login';
 import RegisterView from './src/views/Register';
-import SearchView from './src/views/Search';
+import SearchStack from './src/views/SearchStack';
 
 import { Home, User, Search } from 'lucide-react-native';
 
@@ -23,12 +23,21 @@ const topTab = createMaterialTopTabNavigator()
 const bottomTab = createBottomTabNavigator();
 
 function MainTabs() {
+  const getTabBarStyle = ({ route }) => {
+    const isSearchFlow = route.name === 'Search' && route.state?.index > 0;
+
+    return {
+      display: isSearchFlow ? 'none' : 'flex',
+    };
+  };
+
   return (
     <bottomTab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: 'black',
         tabBarInactiveTintColor: 'gray',
+        tabBarStyle: getTabBarStyle,
       }}
     >
       <bottomTab.Screen
@@ -41,7 +50,7 @@ function MainTabs() {
       />
       <bottomTab.Screen
         name="Search"
-        component={SearchView}
+        component={SearchStack}
         options={{
           title: 'search',
           tabBarIcon: ({ color, size }) => <Search color={color} size={size} />

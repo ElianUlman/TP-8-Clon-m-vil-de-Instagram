@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { SafeAreaView, View, TextInput, Pressable, Text, StyleSheet, Image } from 'react-native';
 import { AuthContext } from '../context/AuthContext';
 
-export default function Login() {
+export default function Login({ navigation }) {
     const { user, isAuthenticated } = useContext(AuthContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -65,7 +65,9 @@ export default function Login() {
             <View style={styles.footer}>
                 <Text style={styles.signupText}>
                     Don’t have an account?{' '}
-                    <Text style={styles.signupLink}>Sign Up</Text>
+                    <Text style={styles.signupLink} onPress={() => navigation.navigate('Register')}>
+                        Sign Up
+                    </Text>
                 </Text>
             </View>
         </SafeAreaView>
@@ -85,8 +87,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     logo: {
-        width: 220,
-        height: 80,
+        width: 300,
+        height: 150,
         marginBottom: 40,
     },
     form: {

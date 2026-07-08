@@ -10,6 +10,7 @@ const api = axios.create({
 });
 
 export async function fetchImages(query = 'nature', count = 10) {
+  if(!query){query="URSS"}
   try {
     const response = await api.get('/search', {
       params: {

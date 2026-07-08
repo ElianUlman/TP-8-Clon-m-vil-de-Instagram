@@ -1,13 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { SafeAreaView, View, TextInput, Pressable, Text, StyleSheet, Image } from 'react-native';
 import { AuthContext } from '../context/AuthContext';
-<<<<<<< HEAD
-=======
-import { View, TextInput, Pressable, Text, ActivityIndicator } from 'react-native';
-import { fetchImages } from '../services/imageService';
-
-export default function Register() {
->>>>>>> Elian
 
 export default function Register({ navigation }) {
     const { setUser, setIsAuthenticated } = useContext(AuthContext);
@@ -37,7 +30,6 @@ export default function Register({ navigation }) {
         setUser({
             username,
             password,
-<<<<<<< HEAD
         });
         setIsAuthenticated(true);
         console.log(username, password);
@@ -183,35 +175,3 @@ const styles = StyleSheet.create({
         fontWeight: '700',
     },
 });
-=======
-            searchHistory: [],
-            profilePicture,
-            followers,
-            following
-        })
-        setIsAuthenticated(true)
-        setLoading(false)
-    }
-
-    return (
-        <View>
-            <TextInput
-                placeholder="User"
-                value={username}
-                onChangeText={setUsername}
-            />
-            <TextInput
-                placeholder="Password"
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry={true}
-                autoCapitalize="none"
-                autoCorrect={false}
-            />
-            <Pressable onPress={handleSubmit} disabled={loading}>
-                {loading ? <ActivityIndicator /> : <Text>Register</Text>}
-            </Pressable>
-        </View>
-    )
-}
->>>>>>> Elian

@@ -1,13 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { AuthProvider, AuthContext } from './src/context/AuthContext';
 
 import HomeView from './src/views/Home';
@@ -18,31 +16,42 @@ import SearchStack from './src/views/SearchStack';
 
 import { Home, User, Search } from 'lucide-react-native';
 
-const stack = createStackNavigator()
+const homeStack = createStackNavigator()
+const appStack = createStackNavigator()
 const topTab = createMaterialTopTabNavigator()
 const bottomTab = createBottomTabNavigator();
 
+// Stack propio del tab Home: contiene el Feed y el perfil ajeno.
+// Al estar dentro del bottomTab, la barra de navegación no desaparece.
+function HomeStack() {
+  return (
+    <homeStack.Navigator>
+      <homeStack.Screen
+        name="Feed"
+        component={HomeView}
+        options={{ headerShown: false }}
+      />
+      <homeStack.Screen
+        name="UserProfile"
+        component={ProfileView}
+        options={{ title: 'Perfil' }}
+      />
+    </homeStack.Navigator>
+  );
+}
+
 function MainTabs() {
-  const getTabBarStyle = ({ route }) => {
-    const isSearchFlow = route.name === 'Search' && route.state?.index > 0;
-
-    return {
-      display: isSearchFlow ? 'none' : 'flex',
-    };
-  };
-
   return (
     <bottomTab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: 'black',
         tabBarInactiveTintColor: 'gray',
-        tabBarStyle: getTabBarStyle,
       }}
     >
       <bottomTab.Screen
         name="Home"
-        component={HomeView}
+        component={HomeStack}  // ← ahora es un stack, no directamente HomeView
         options={{
           title: 'Home',
           tabBarIcon: ({ color, size }) => <Home color={color} size={size} />
@@ -59,7 +68,7 @@ function MainTabs() {
       <bottomTab.Screen
         name="Profile"
         component={ProfileView}
-        options={{ 
+        options={{
           title: 'Perfil',
           tabBarIcon: ({ color, size }) => <User color={color} size={size} />
         }}
@@ -68,17 +77,15 @@ function MainTabs() {
   );
 }
 
-
-
 function AppStack() {
   return (
-    <stack.Navigator>
-      <stack.Screen
+    <appStack.Navigator>
+      <appStack.Screen
         name="MainTabs"
         component={MainTabs}
         options={{ headerShown: false }}
       />
-    </stack.Navigator>
+    </appStack.Navigator>
   );
 }
 
@@ -93,7 +100,6 @@ function AuthStack() {
 
 function RootNavigator() {
   const { isAuthenticated } = useContext(AuthContext);
-
   return (
     <NavigationContainer>
       {isAuthenticated ? <AppStack /> : <AuthStack />}
@@ -102,7 +108,6 @@ function RootNavigator() {
 }
 
 export default function App() {
-
   return (
     <AuthProvider>
       <RootNavigator />

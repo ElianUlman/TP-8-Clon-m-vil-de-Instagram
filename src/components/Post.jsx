@@ -6,10 +6,10 @@ export default function Post({ post }) {
     const navigation = useNavigation();
 
     const irAlPerfil = () => {
-        navigation.navigate('Profile', {
+        // Navega a UserProfile (stack), no a Profile (tab).
+        // Así el tab de Perfil propio nunca se contamina con estos params.
+        navigation.navigate('UserProfile', {
             username: post.photographer,
-            // Pasamos la foto y descripción que ya tenemos,
-            // así Profile no depende de un fetch nuevo para mostrarlos
             profilePicture: post.url,
             description: post.description,
         });
@@ -17,7 +17,6 @@ export default function Post({ post }) {
 
     return (
         <View style={styles.container}>
-            {/* Header del post: foto de perfil + nombre clickeable */}
             <Pressable
                 onPress={irAlPerfil}
                 style={({ pressed }) => [styles.header, pressed && styles.headerPressed]}
@@ -29,10 +28,8 @@ export default function Post({ post }) {
                 </View>
             </Pressable>
 
-            {/* Imagen del post */}
             <Image source={{ uri: post.url }} style={styles.image} />
 
-            {/* Footer */}
             <View style={styles.footer}>
                 <Text style={styles.likes}>❤️ likes: —</Text>
                 <Text style={styles.description} numberOfLines={2}>

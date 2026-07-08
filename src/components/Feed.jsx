@@ -4,7 +4,7 @@ import { fetchImages } from '../services/imageService';
 import BarraEstados from './BarraEstados.jsx';
 import Post from './Post.jsx';
 
-export default function Feed({ searchText = "communism" }) {
+export default function Feed({ searchText = "nature" }) {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
 

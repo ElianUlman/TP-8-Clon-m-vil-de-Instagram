@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, Image, StyleSheet, ActivityIndicator, Text, TextInput, Pressable } from 'react-native';
+import { View, FlatList, StyleSheet, ActivityIndicator, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { fetchImages } from '../services/imageService';
@@ -31,32 +31,25 @@ export default function Feed({ searchText = "communism" }) {
   if (loading) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator size="large" />
+        <ActivityIndicator size="large" color="#fff" />
       </View>
     );
   }
 
   return (
-    <View style={{ flex: 1 }}>
-
-      <BarraEstados userList={images}></BarraEstados>
-
-
-
+    <View style={styles.container}>
       <FlatList
         data={images}
         keyExtractor={(item) => item.id.toString()}
         numColumns={1}
         contentContainerStyle={styles.list}
+        ListHeaderComponent={<BarraEstados userList={images} />}
         renderItem={({ item }) => (
           <Pressable
             onPress={() => navigation.navigate("PostScreen", { post: item })}
           >
             <View style={styles.card}>
-              <Post post={item}></Post>
-              {/**<Image source={{ uri: item.url }} style={styles.image} />
-            <Text style={styles.caption}>{item.photographer}</Text>
-            <Text style={styles.caption}>{item.description}</Text> */}
+              <Post post={item} />
             </View>
           </Pressable>
         )}
@@ -66,9 +59,8 @@ export default function Feed({ searchText = "communism" }) {
 }
 
 const styles = StyleSheet.create({
-  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  list: { padding: 8 },
-  card: { flex: 1, margin: 4 },
-  image: { width: '100%', height: 150, borderRadius: 8 },
-  caption: { fontSize: 12, color: '#666', marginTop: 2 },
+  container: { flex: 1, backgroundColor: '#000' },
+  center: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000' },
+  list: { paddingBottom: 12 },
+  card: { marginBottom: 12 },
 });

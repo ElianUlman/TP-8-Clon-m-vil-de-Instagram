@@ -15,6 +15,7 @@ import ProfileView from './src/views/Profile';
 import LoginView from './src/views/Login';
 import RegisterView from './src/views/Register';
 import SearchStack from './src/views/SearchStack';
+import PostScreen from './src/views/PostScreen';
 
 import { Home, User, Search } from 'lucide-react-native';
 
@@ -78,6 +79,7 @@ function AppStack() {
         component={MainTabs}
         options={{ headerShown: false }}
       />
+      <stack.Screen name="PostScreen" component={PostScreen} />
     </stack.Navigator>
   );
 }

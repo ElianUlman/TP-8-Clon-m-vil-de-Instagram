@@ -6,6 +6,8 @@ export default function Home() {
     const route = useRoute();
     const searchText = route.params?.searchText;
 
+    
+
     return (
         <>
             <Feed searchText={searchText} />

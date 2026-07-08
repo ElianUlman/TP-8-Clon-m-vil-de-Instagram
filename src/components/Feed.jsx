@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, Image, StyleSheet, ActivityIndicator, Text, TextInput } from 'react-native';
+import { View, FlatList, Image, StyleSheet, ActivityIndicator, Text, TextInput, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import { fetchImages } from '../services/imageService';
 import BarraEstados from './BarraEstados.jsx';
 import Post from './Post.jsx';
 
 export default function Feed({ searchText = "communism" }) {
+  const navigation = useNavigation();
+
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -37,7 +41,7 @@ export default function Feed({ searchText = "communism" }) {
 
       <BarraEstados userList={images}></BarraEstados>
 
-      
+
 
       <FlatList
         data={images}
@@ -45,12 +49,16 @@ export default function Feed({ searchText = "communism" }) {
         numColumns={1}
         contentContainerStyle={styles.list}
         renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Post post={item}></Post>
-            {/**<Image source={{ uri: item.url }} style={styles.image} />
+          <Pressable
+            onPress={() => navigation.navigate("PostScreen", { post: item })}
+          >
+            <View style={styles.card}>
+              <Post post={item}></Post>
+              {/**<Image source={{ uri: item.url }} style={styles.image} />
             <Text style={styles.caption}>{item.photographer}</Text>
             <Text style={styles.caption}>{item.description}</Text> */}
-          </View>
+            </View>
+          </Pressable>
         )}
       />
     </View>

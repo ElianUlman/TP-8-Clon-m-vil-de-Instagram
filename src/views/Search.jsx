@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ActivityIndicator, FlatList, Image, StyleSheet, Text } from 'react-native';
+import { View, ActivityIndicator, FlatList, Image, StyleSheet, Text, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import SearchBar from '../components/SearchBar';
@@ -40,7 +40,7 @@ export default function SearchView() {
 
       {loading ? (
         <View style={styles.center}>
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="large" color="#fff" />
         </View>
       ) : (
         <FlatList
@@ -50,7 +50,9 @@ export default function SearchView() {
           contentContainerStyle={styles.list}
           columnWrapperStyle={styles.columnWrapper}
           renderItem={({ item }) => (
-            <Image source={{ uri: item.url }} style={styles.image} />
+            <Pressable onPress={() => navigation.getParent()?.navigate('PostScreen', { post: item })}>
+              <Image source={{ uri: item.url }} style={styles.image} />
+            </Pressable>
           )}
         />
       )}
@@ -59,9 +61,9 @@ export default function SearchView() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'white' },
-  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  sectionTitle: { fontSize: 16, fontWeight: '700', marginHorizontal: 12, marginTop: 10, marginBottom: 8 },
+  container: { flex: 1, backgroundColor: '#000' },
+  center: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000' },
+  sectionTitle: { fontSize: 16, fontWeight: '700', marginHorizontal: 12, marginTop: 10, marginBottom: 8, color: '#fff' },
   list: { paddingHorizontal: 2, paddingBottom: 8 },
   columnWrapper: { justifyContent: 'space-between' },
   image: { width: '32%', aspectRatio: 1, marginBottom: 2, borderRadius: 2 },

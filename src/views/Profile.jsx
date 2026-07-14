@@ -4,9 +4,10 @@ import {
     FlatList, Pressable, ActivityIndicator, Dimensions,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../context/AuthContext';
 import { fetchImages } from '../services/imageService';
+import Header from '../components/Header.jsx';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const GRID_ITEM_SIZE = (SCREEN_WIDTH - 4) / 3;
@@ -14,10 +15,15 @@ const GRID_ITEM_SIZE = (SCREEN_WIDTH - 4) / 3;
 export default function Profile() {
     const { user } = useContext(AuthContext);
     const route = useRoute();
+    const navigation = useNavigation();
 
     // Si viene username por parámetro (desde un Post), lo usamos.
     // Si no, mostramos el perfil del usuario logueado.
     const username = route.params?.username ?? user?.username;
+
+    // Si vino un username por parámetro es porque estamos viendo el perfil
+    // de otra persona (llegamos desde un Post), no el propio.
+    const isOtherUserProfile = !!route.params?.username;
 
     // Datos que el Post ya conoce y nos pasa para no tener que re-fetchear
     const paramProfilePicture = route.params?.profilePicture ?? null;
@@ -82,21 +88,27 @@ export default function Profile() {
 
     if (loading) {
         return (
-            <View style={styles.center}>
-                <ActivityIndicator size="large" color="#000" />
+            <View style={styles.container}>
+                {!isOtherUserProfile && <Header username={username} />}
+                <View style={styles.center}>
+                    <ActivityIndicator size="large" color="#fff" />
+                </View>
             </View>
         );
     }
 
     if (!username || !profileData) {
         return (
-            <View style={styles.center}>
-                <Text style={styles.emptyText}>No hay usuario logueado</Text>
+            <View style={styles.container}>
+                {!isOtherUserProfile && <Header username={username} />}
+                <View style={styles.center}>
+                    <Text style={styles.emptyText}>No hay usuario logueado</Text>
+                </View>
             </View>
         );
     }
 
-    const Header = () => (
+    const Header2 = () => (
         <View style={styles.header}>
             <View style={styles.topRow}>
                 {profileData.profilePicture ? (
@@ -132,18 +144,24 @@ export default function Profile() {
     );
 
     return (
-        <FlatList
-            data={posts}
-            keyExtractor={(item) => item.id.toString()}
-            numColumns={3}
-            ListHeaderComponent={<Header />}
-            contentContainerStyle={styles.list}
-            renderItem={({ item }) => (
-                <View style={styles.gridItem}>
-                    <Image source={{ uri: item.url }} style={styles.gridImage} />
-                </View>
-            )}
-        />
+        <View style={styles.container}>
+            {!isOtherUserProfile && <Header username={username} />}
+            <FlatList
+                data={posts}
+                keyExtractor={(item) => item.id.toString()}
+                numColumns={3}
+                ListHeaderComponent={<Header2 />}
+                contentContainerStyle={styles.list}
+                renderItem={({ item }) => (
+                    <Pressable
+                        style={styles.gridItem}
+                        onPress={() => navigation.getParent()?.navigate('PostScreen', { post: item })}
+                    >
+                        <Image source={{ uri: item.url }} style={styles.gridImage} />
+                    </Pressable>
+                )}
+            />
+        </View>
     );
 }
 
@@ -163,7 +181,8 @@ function formatNumber(n) {
 }
 
 const styles = StyleSheet.create({
-    center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+    container: { flex: 1, backgroundColor: '#000' },
+    center: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000' },
     emptyText: { color: '#888', fontSize: 15 },
     list: { paddingBottom: 20 },
 
@@ -171,7 +190,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 14,
         paddingTop: 16,
         paddingBottom: 8,
-        backgroundColor: '#fff',
+        backgroundColor: '#000',
     },
     topRow: {
         flexDirection: 'row',
@@ -183,7 +202,7 @@ const styles = StyleSheet.create({
         height: 86,
         borderRadius: 43,
         borderWidth: 1,
-        borderColor: '#e0e0e0',
+        borderColor: '#333',
     },
     avatarPlaceholder: {
         backgroundColor: '#ccc',
@@ -199,25 +218,25 @@ const styles = StyleSheet.create({
         marginLeft: 16,
     },
     statItem: { alignItems: 'center' },
-    statNumber: { fontSize: 17, fontWeight: '700', color: '#111' },
-    statLabel: { fontSize: 12, color: '#555', marginTop: 2 },
+    statNumber: { fontSize: 17, fontWeight: '700', color: '#fff' },
+    statLabel: { fontSize: 12, color: '#aaa', marginTop: 2 },
 
-    username: { fontSize: 14, fontWeight: '700', color: '#111', marginBottom: 3 },
-    description: { fontSize: 13, color: '#333', lineHeight: 18, marginBottom: 10 },
+    username: { fontSize: 14, fontWeight: '700', color: '#fff', marginBottom: 3 },
+    description: { fontSize: 13, color: '#ddd', lineHeight: 18, marginBottom: 10 },
 
     editButton: {
         borderWidth: 1,
-        borderColor: '#ccc',
+        borderColor: '#444',
         borderRadius: 7,
         paddingVertical: 7,
         alignItems: 'center',
         marginBottom: 12,
-        backgroundColor: '#fff',
+        backgroundColor: '#000',
     },
-    editButtonPressed: { backgroundColor: '#f0f0f0' },
-    editButtonText: { fontSize: 14, fontWeight: '600', color: '#111' },
+    editButtonPressed: { backgroundColor: '#222' },
+    editButtonText: { fontSize: 14, fontWeight: '600', color: '#fff' },
 
-    divider: { height: 1, backgroundColor: '#e0e0e0', marginHorizontal: -14 },
+    divider: { height: 1, backgroundColor: '#333', marginHorizontal: -14 },
 
     gridItem: { width: GRID_ITEM_SIZE, height: GRID_ITEM_SIZE, margin: 1 },
     gridImage: { width: '100%', height: '100%' },

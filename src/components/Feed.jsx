@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { fetchImages } from '../services/imageService';
 import BarraEstados from './BarraEstados.jsx';
 import Post from './Post.jsx';
+import Header from './Header.jsx';
 
 export default function Feed({ searchText = "communism" }) {
   const navigation = useNavigation();
@@ -30,14 +31,18 @@ export default function Feed({ searchText = "communism" }) {
 
   if (loading) {
     return (
-      <View style={styles.center}>
-        <ActivityIndicator size="large" color="#fff" />
+      <View style={styles.container}>
+        <Header />
+        <View style={styles.center}>
+          <ActivityIndicator size="large" color="#fff" />
+        </View>
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
+      <Header />
       <FlatList
         data={images}
         keyExtractor={(item) => item.id.toString()}
@@ -46,8 +51,8 @@ export default function Feed({ searchText = "communism" }) {
         ListHeaderComponent={<BarraEstados userList={images} />}
         renderItem={({ item }) => (
           <Pressable
-            onPress={() => navigation.navigate("PostScreen", { post: item })}
-          >
+              onPress={() => navigation.getParent()?.navigate("PostScreen", { post: item })}
+            >
             <View style={styles.card}>
               <Post post={item} />
             </View>

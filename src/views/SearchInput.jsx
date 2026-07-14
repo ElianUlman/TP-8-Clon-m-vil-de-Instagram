@@ -28,14 +28,15 @@ export default function SearchInputView() {
       }
 
       setLoading(true);
-      try {
-        const data = await fetchImages(query, 6);
-        setSuggestions(data);
-      } catch (error) {
-        console.log('No se pudieron cargar sugerencias');
-      } finally {
-        setLoading(false);
-      }
+        try {
+          const data = await fetchImages(query, 6);
+          console.log('SearchInput fetched', data?.length, 'suggestions for', query);
+          setSuggestions(data);
+        } catch (error) {
+          console.log('No se pudieron cargar sugerencias', error);
+        } finally {
+          setLoading(false);
+        }
     };
 
     const timeout = setTimeout(loadSuggestions, 250);
@@ -56,7 +57,7 @@ export default function SearchInputView() {
     <View style={styles.container}>
       <View style={styles.headerRow}>
         <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={20} color="black" />
+          <Ionicons name="arrow-back" size={20} color="#fff" />
         </Pressable>
         <TextInput
           autoFocus
@@ -64,6 +65,7 @@ export default function SearchInputView() {
           onChangeText={setQuery}
           onSubmitEditing={() => handleSearch(query)}
           placeholder="Buscar"
+          placeholderTextColor="#888"
           style={styles.input}
           returnKeyType="search"
         />
@@ -77,7 +79,7 @@ export default function SearchInputView() {
           ) : (
             recent.map((item, index) => (
               <Pressable key={`${item}-${index}`} style={styles.historyItem} onPress={() => handleSearch(item)}>
-                <Ionicons name="time-outline" size={16} color="#666" />
+                <Ionicons name="time-outline" size={16} color="#aaa" />
                 <Text style={styles.historyText}>{item}</Text>
               </Pressable>
             ))
@@ -96,7 +98,9 @@ export default function SearchInputView() {
               renderItem={({ item }) => (
                 <Pressable style={styles.suggestionCard} onPress={() => handleSearch(item.description || query)}>
                   <View style={styles.suggestionImageWrapper}>
-                    <Image source={{ uri: item.url }} style={styles.suggestionImage} />
+                    <Pressable onPress={() => navigation.getParent()?.navigate('PostScreen', { post: item })}>
+                      <Image source={{ uri: item.url }} style={styles.suggestionImage} />
+                    </Pressable>
                   </View>
                   <View style={styles.suggestionTextContainer}>
                     <Text style={styles.suggestionUsername}>{item.photographer || 'Usuario'}</Text>
@@ -113,20 +117,20 @@ export default function SearchInputView() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'white', paddingTop: 16 },
+  container: { flex: 1, backgroundColor: '#000', paddingTop: 16 },
   headerRow: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 12, marginBottom: 12 },
   backButton: { marginRight: 8, padding: 4 },
-  input: { flex: 1, height: 42, borderWidth: 1, borderColor: '#ddd', borderRadius: 20, paddingHorizontal: 14, backgroundColor: '#f2f2f2' },
+  input: { flex: 1, height: 42, borderWidth: 1, borderColor: '#333', borderRadius: 20, paddingHorizontal: 14, backgroundColor: '#1a1a1a', color: '#fff' },
   historyContainer: { flex: 1, paddingHorizontal: 16 },
-  sectionTitle: { fontSize: 16, fontWeight: '700', marginBottom: 10 },
-  emptyText: { color: '#777', fontSize: 14 },
-  historyItem: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: '#f0f0f0' },
-  historyText: { marginLeft: 8, fontSize: 15 },
+  sectionTitle: { fontSize: 16, fontWeight: '700', marginBottom: 10, color: '#fff' },
+  emptyText: { color: '#999', fontSize: 14 },
+  historyItem: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: '#222' },
+  historyText: { marginLeft: 8, fontSize: 15, color: '#fff' },
   suggestionsContainer: { flex: 1, paddingHorizontal: 12 },
-  suggestionCard: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: '#f2f2f2' },
+  suggestionCard: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: '#222' },
   suggestionImageWrapper: { width: 56, height: 56, borderRadius: 28, overflow: 'hidden', marginRight: 10 },
   suggestionImage: { width: '100%', height: '100%' },
   suggestionTextContainer: { flex: 1 },
-  suggestionUsername: { fontWeight: '700', fontSize: 14 },
-  suggestionDescription: { color: '#666', fontSize: 12, marginTop: 2 },
+  suggestionUsername: { fontWeight: '700', fontSize: 14, color: '#fff' },
+  suggestionDescription: { color: '#aaa', fontSize: 12, marginTop: 2 },
 });

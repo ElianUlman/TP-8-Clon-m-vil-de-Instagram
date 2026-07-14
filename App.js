@@ -1,13 +1,11 @@
-import { StyleSheet } from 'react-native';
-
-import { NavigationContainer, DarkTheme } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StatusBar } from 'react-native';
-
-
 import React, { useContext } from 'react';
+import { StyleSheet, StatusBar } from 'react-native';
+
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import { AuthProvider, AuthContext } from './src/context/AuthContext';
 
 import HomeView from './src/views/Home';
@@ -17,12 +15,12 @@ import RegisterView from './src/views/Register';
 import SearchStack from './src/views/SearchStack';
 import PostScreen from './src/views/PostScreen';
 
-import { Home, User, Search, PlusSquare, Heart } from 'lucide-react-native';
+import { Home, User, Search } from 'lucide-react-native';
 
-const homeStack = createStackNavigator()
-const appStack = createStackNavigator()
-const topTab = createMaterialTopTabNavigator()
-const bottomTab = createBottomTabNavigator();
+const HomeStack = createStackNavigator();
+const appStack = createStackNavigator();
+const TopTab = createMaterialTopTabNavigator();
+const BottomTab = createBottomTabNavigator();
 
 const COLORS = {
   background: '#000',
@@ -32,7 +30,6 @@ const COLORS = {
   accent: '#e0605a',
 };
 
-// Custom dark theme so screens without explicit backgrounds don't flash white
 const AppDarkTheme = {
   ...DarkTheme,
   colors: {
@@ -48,20 +45,27 @@ const AppDarkTheme = {
 
 // Stack propio del tab Home: contiene el Feed y el perfil ajeno.
 // Al estar dentro del bottomTab, la barra de navegación no desaparece.
-function HomeStack() {
+function HomeStackScreen() {
   return (
-    <homeStack.Navigator>
-      <homeStack.Screen
+    <HomeStack.Navigator>
+      <HomeStack.Screen
         name="Feed"
         component={HomeView}
         options={{ headerShown: false }}
       />
-      <homeStack.Screen
+
+      <HomeStack.Screen
         name="UserProfile"
         component={ProfileView}
-        options={{ title: 'Perfil' }}
+        options={{
+          title: 'Perfil',
+          headerStyle: {
+            backgroundColor: COLORS.background,
+          },
+          headerTintColor: '#fff',
+        }}
       />
-    </homeStack.Navigator>
+    </HomeStack.Navigator>
   );
 }
 
@@ -82,7 +86,7 @@ function MainTabs() {
   };
 
   return (
-    <bottomTab.Navigator
+    <BottomTab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: COLORS.active,
@@ -92,45 +96,57 @@ function MainTabs() {
         tabBarHideOnKeyboard: true,
       }}
     >
-      <bottomTab.Screen
+      <BottomTab.Screen
         name="Home"
-        component={HomeStack}  // ← ahora es un stack, no directamente HomeView
+        component={HomeStackScreen}
         options={{
-          title: 'Home',
           tabBarIcon: ({ color, size, focused }) => (
-            <Home color={color} size={size} fill={focused ? color : 'transparent'} />
+            <Home
+              color={color}
+              size={size}
+              fill={focused ? color : 'transparent'}
+            />
           ),
         }}
       />
-      <bottomTab.Screen
+
+      <BottomTab.Screen
         name="Search"
         component={SearchStack}
         options={{
-          title: 'search',
-          tabBarIcon: ({ color, size }) => <Search color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => (
+            <Search color={color} size={size} />
+          ),
         }}
       />
-      <bottomTab.Screen
+
+      <BottomTab.Screen
         name="Profile"
         component={ProfileView}
         options={{
-          title: 'Perfil',
-          tabBarIcon: ({ color, size }) => <User color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => (
+            <User color={color} size={size} />
+          ),
         }}
       />
-    </bottomTab.Navigator>
+    </BottomTab.Navigator>
   );
 }
 
-function AppStack() {
+function AppStackScreen() {
   return (
     <appStack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: COLORS.background },
+        headerStyle: {
+          backgroundColor: COLORS.background,
+        },
         headerTintColor: '#fff',
-        headerTitleStyle: { fontWeight: '600' },
-        headerShadowVisible: false,
-        cardStyle: { backgroundColor: COLORS.background },
+        headerTitleStyle: {
+          fontWeight: '600',
+        },
+        cardStyle: {
+          backgroundColor: COLORS.background,
+        },
       }}
     >
       <appStack.Screen
@@ -149,34 +165,55 @@ function AppStack() {
 
 function AuthStack() {
   return (
-    <topTab.Navigator
+    <TopTab.Navigator
       screenOptions={{
-        tabBarStyle: { backgroundColor: COLORS.background, elevation: 0, shadowOpacity: 0 },
-        tabBarIndicatorStyle: { backgroundColor: COLORS.accent, height: 2 },
+        tabBarStyle: {
+          backgroundColor: COLORS.background,
+          elevation: 0,
+          shadowOpacity: 0,
+        },
+        tabBarIndicatorStyle: {
+          backgroundColor: COLORS.accent,
+          height: 2,
+        },
         tabBarActiveTintColor: '#fff',
         tabBarInactiveTintColor: COLORS.inactive,
-        tabBarLabelStyle: { fontWeight: '600', textTransform: 'none' },
+        tabBarLabelStyle: {
+          fontWeight: '600',
+          textTransform: 'none',
+        },
       }}
     >
-      <topTab.Screen name="Login" component={LoginView} />
-      <topTab.Screen name="Register" component={RegisterView} />
-    </topTab.Navigator>
-  )
+      <TopTab.Screen
+        name="Login"
+        component={LoginView}
+      />
+
+      <TopTab.Screen
+        name="Register"
+        component={RegisterView}
+      />
+    </TopTab.Navigator>
+  );
 }
 
 function RootNavigator() {
   const { isAuthenticated } = useContext(AuthContext);
+
   return (
     <NavigationContainer theme={AppDarkTheme}>
-      {isAuthenticated ? <AppStack /> : <AuthStack />}
+      {isAuthenticated ? <AppStackScreen /> : <AuthStack />}
     </NavigationContainer>
-  )
+  );
 }
 
 export default function App() {
   return (
     <AuthProvider>
-      <StatusBar style="light" />
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="#000"
+      />
       <RootNavigator />
     </AuthProvider>
   );
@@ -186,7 +223,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import { Heart, MessageCircle, Send, Bookmark } from 'lucide-react-native';
 
 export default function Post({ post }) {
+    const navigation = useNavigation();
     const [liked, setLiked] = useState(false);
     const [bookmarked, setBookmarked] = useState(false);
     const [likeCount, setLikeCount] = useState(post.likes ?? 1234);
@@ -27,6 +30,7 @@ export default function Post({ post }) {
     };
 
     return (
+    
         <View style={styles.container}>
             <View style={styles.header}>
                 <Pressable

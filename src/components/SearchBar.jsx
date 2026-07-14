@@ -10,21 +10,26 @@ export default function SearchBar({
   onPress,
   placeholder = 'Buscar',
   showSoftInputOnFocus = true,
+  style,
+  inputStyle,
 }) {
   return (
-    <Pressable onPress={onPress} style={styles.wrapper}>
+    <Pressable onPress={onPress} style={[styles.wrapper, style]}> 
       <TextInput
         value={searchText}
-        style={styles.searchBar}
+        style={[styles.searchBar, inputStyle]}
         onChangeText={(text) => setSearchText?.(text)}
-        onSubmitEditing={onSubmit}
+        onSubmitEditing={(e) => {
+          const text = e?.nativeEvent?.text;
+          if (typeof onSubmit === 'function') onSubmit(text);
+        }}
         onFocus={onFocus}
         editable={editable}
         showSoftInputOnFocus={showSoftInputOnFocus}
         placeholder={placeholder}
-        placeholderTextColor="#999"
+        placeholderTextColor="#888"
         returnKeyType="search"
-        pointerEvents="none"
+        pointerEvents={editable ? 'auto' : 'none'}
       />
     </Pressable>
   );
@@ -32,15 +37,16 @@ export default function SearchBar({
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginTop: 20,
-    marginHorizontal: 10,
+    marginTop: 16,
+    marginHorizontal: 12,
   },
   searchBar: {
-    height: 45,
+    height: 42,
     borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    backgroundColor: 'white',
+    borderColor: '#333',
+    borderRadius: 20,
+    paddingHorizontal: 14,
+    backgroundColor: '#1a1a1a',
+    color: '#fff',
   },
 });

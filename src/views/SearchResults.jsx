@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ActivityIndicator, FlatList, Image, Pressable, 
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { fetchImages } from '../services/imageService';
+import SearchBar from '../components/SearchBar';
 
 export default function SearchResultsView() {
   const navigation = useNavigation();
@@ -22,6 +23,7 @@ export default function SearchResultsView() {
       setLoading(true);
       try {
         const data = await fetchImages(query, 30);
+          console.log('SearchResults fetched', data?.length, 'items for query', query);
         setImages(data);
       } catch (error) {
         console.log('No se pudieron cargar resultados');
@@ -43,15 +45,14 @@ export default function SearchResultsView() {
     <View style={styles.container}>
       <View style={styles.headerRow}>
         <Pressable onPress={() => navigation.popToTop()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={20} color="black" />
+          <Ionicons name="arrow-back" size={20} color="#fff" />
         </Pressable>
-        <TextInput
-          value={inputValue}
-          onChangeText={setInputValue}
-          onSubmitEditing={() => handleSearch(inputValue)}
+        <SearchBar
+          searchText={inputValue}
+          setSearchText={setInputValue}
+          onSubmit={handleSearch}
           placeholder="Buscar"
-          style={styles.input}
-          returnKeyType="search"
+          style={{ flex: 1 }}
         />
       </View>
 
@@ -67,7 +68,9 @@ export default function SearchResultsView() {
           contentContainerStyle={styles.list}
           columnWrapperStyle={styles.columnWrapper}
           renderItem={({ item }) => (
-            <Image source={{ uri: item.url }} style={styles.image} />
+            <Pressable onPress={() => navigation.getParent()?.navigate('PostScreen', { post: item })}>
+              <Image source={{ uri: item.url }} style={styles.image} />
+            </Pressable>
           )}
         />
       )}
@@ -76,11 +79,11 @@ export default function SearchResultsView() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'white' },
+  container: { flex: 1, backgroundColor: '#000' },
   headerRow: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 12, paddingTop: 16, paddingBottom: 8 },
   backButton: { marginRight: 8, padding: 4 },
   input: { flex: 1, height: 42, borderWidth: 1, borderColor: '#ddd', borderRadius: 20, paddingHorizontal: 14, backgroundColor: '#f2f2f2' },
-  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  center: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000' },
   list: { paddingHorizontal: 2, paddingBottom: 8 },
   columnWrapper: { justifyContent: 'space-between' },
   image: { width: '32%', aspectRatio: 1, marginBottom: 2, borderRadius: 2 },

@@ -39,7 +39,7 @@ export default function Register({ navigation }) {
         <SafeAreaView style={styles.container}>
             <View style={styles.content}>
                 <Image
-                    source={require('../../assets/images-removebg-preview.png')}
+                    source={require('../../assets/insta-text-white.png')}
                     style={styles.logo}
                     resizeMode="contain"
                 />
@@ -92,7 +92,7 @@ export default function Register({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#000',
         justifyContent: 'space-between',
         paddingHorizontal: 24,
     },
@@ -102,42 +102,42 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     logo: {
-        width: 300,
-        height: 150,
-        marginBottom: 40,
+        width: 260,
+        height: 120,
+        marginBottom: 32,
     },
     form: {
         width: '100%',
         maxWidth: 340,
     },
     input: {
-        height: 48,
+        height: 42,
         width: '100%',
-        backgroundColor: '#F6F6F6',
+        backgroundColor: '#1a1a1a',
         borderWidth: 1,
-        borderColor: '#DBDBDB',
-        borderRadius: 6,
-        paddingHorizontal: 16,
+        borderColor: '#333',
+        borderRadius: 20,
+        paddingHorizontal: 14,
         fontSize: 14,
-        color: '#262626',
+        color: '#fff',
         marginBottom: 12,
     },
     passwordWrapper: {
-        height: 48,
+        height: 42,
         width: '100%',
-        backgroundColor: '#F6F6F6',
+        backgroundColor: '#1a1a1a',
         borderWidth: 1,
-        borderColor: '#DBDBDB',
-        borderRadius: 6,
+        borderColor: '#333',
+        borderRadius: 20,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 16,
+        paddingHorizontal: 14,
         marginBottom: 10,
     },
     passwordInput: {
         flex: 1,
         fontSize: 14,
-        color: '#262626',
+        color: '#fff',
         paddingVertical: 0,
     },
     forgotWrapper: {
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     forgotText: {
         fontSize: 12,
         fontWeight: '600',
-        color: '#0095F6',
+        color: '#1DA1F2',
     },
     button: {
         height: 48,
@@ -168,10 +168,10 @@ const styles = StyleSheet.create({
     },
     signupText: {
         fontSize: 12,
-        color: '#8E8E8E',
+        color: '#bdbdbd',
     },
     signupLink: {
-        color: '#0095F6',
+        color: '#1DA1F2',
         fontWeight: '700',
     },
 });

@@ -69,53 +69,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 8,
     },
-<<<<<<< HEAD
-    headerPressed: {
-        opacity: 0.6,
-    },
-    pfp: {
-        width: 38,
-        height: 38,
-        borderRadius: 19,
-        borderWidth: 1,
-        borderColor: '#e0e0e0',
-    },
-    headerText: {
-        marginLeft: 10,
-    },
-    photographer: {
-        fontSize: 13,
-        fontWeight: '700',
-        color: '#111',
-    },
-    suggestion: {
-        fontSize: 11,
-        color: '#888',
-    },
-    image: {
-        width: '100%',
-        height: 300,
-    },
-    footer: {
-        paddingHorizontal: 10,
-        paddingTop: 8,
-        paddingBottom: 4,
-    },
-    likes: {
-        fontSize: 13,
-        fontWeight: '600',
-        color: '#111',
-        marginBottom: 4,
-    },
-    description: {
-        fontSize: 13,
-        color: '#333',
-        lineHeight: 18,
-    },
-    photographerInline: {
-        fontWeight: '700',
-    },
-=======
     pfp: { width: 32, height: 32, borderRadius: 16, marginRight: 10 },
     username: { color: '#fff', fontWeight: '600', flex: 1 },
     menuDots: { color: '#fff', fontSize: 18, paddingHorizontal: 6 },
@@ -132,5 +85,4 @@ const styles = StyleSheet.create({
     likes: { color: '#fff', fontWeight: '700', paddingHorizontal: 10, marginTop: 4, marginBottom: 2 },
     caption: { color: '#fff', paddingHorizontal: 10, paddingBottom: 8, lineHeight: 18 },
     captionUsername: { fontWeight: '700' },
->>>>>>> luca
 });

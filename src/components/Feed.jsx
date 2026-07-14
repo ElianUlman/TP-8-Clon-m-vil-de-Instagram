@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet, ActivityIndicator, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { fetchImages } from '../services/imageService';
+import { fetchImages } from '../services/imageService.js';
 import BarraEstados from './BarraEstados.jsx';
 import Post from './Post.jsx';
 import Header from './Header.jsx';

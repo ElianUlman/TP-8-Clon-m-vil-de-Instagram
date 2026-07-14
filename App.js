@@ -1,13 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, StatusBar } from 'react-native';
 
-import { NavigationContainer, DarkTheme } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-
-import React, { useState, useContext } from 'react';
 import { AuthProvider, AuthContext } from './src/context/AuthContext';
 
 import HomeView from './src/views/Home';
@@ -17,13 +15,13 @@ import RegisterView from './src/views/Register';
 import SearchStack from './src/views/SearchStack';
 import PostScreen from './src/views/PostScreen';
 
-import { Home, User, Search, PlusSquare, Heart } from 'lucide-react-native';
+import { Home, User, Search } from 'lucide-react-native';
 
-const stack = createStackNavigator()
-const topTab = createMaterialTopTabNavigator()
-const bottomTab = createBottomTabNavigator();
+const HomeStack = createStackNavigator();
+const AppStackNav = createStackNavigator();
+const TopTab = createMaterialTopTabNavigator();
+const BottomTab = createBottomTabNavigator();
 
-// Shared dark palette
 const COLORS = {
   background: '#000',
   border: '#1a1a1a',
@@ -32,7 +30,6 @@ const COLORS = {
   accent: '#e0605a',
 };
 
-// Custom dark theme so screens without explicit backgrounds don't flash white
 const AppDarkTheme = {
   ...DarkTheme,
   colors: {
@@ -45,98 +42,151 @@ const AppDarkTheme = {
   },
 };
 
-function MainTabs() {
-  const getTabBarStyle = ({ route }) => {
-    const isSearchFlow = route.name === 'Search' && route.state?.index > 0;
-
-    return {
-      display: isSearchFlow ? 'none' : 'flex',
-      backgroundColor: COLORS.background,
-      borderTopColor: COLORS.border,
-      borderTopWidth: StyleSheet.hairlineWidth,
-      height: 60,
-      paddingTop: 6,
-      paddingBottom: 8,
-    };
-  };
-
+function HomeStackScreen() {
   return (
-    <bottomTab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: COLORS.active,
-        tabBarInactiveTintColor: COLORS.inactive,
-        tabBarStyle: getTabBarStyle,
-        tabBarShowLabel: false,
-        tabBarHideOnKeyboard: true,
-      }}
-    >
-      <bottomTab.Screen
-        name="Home"
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="Feed"
         component={HomeView}
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, size, focused }) => (
-            <Home color={color} size={size} fill={focused ? color : 'transparent'} />
-          ),
-        }}
+        options={{ headerShown: false }}
       />
-      <bottomTab.Screen
-        name="Search"
-        component={SearchStack}
-        options={{
-          title: 'search',
-          tabBarIcon: ({ color, size }) => <Search color={color} size={size} />,
-        }}
-      />
-      <bottomTab.Screen
-        name="Profile"
+
+      <HomeStack.Screen
+        name="UserProfile"
         component={ProfileView}
         options={{
           title: 'Perfil',
-          tabBarIcon: ({ color, size }) => <User color={color} size={size} />,
+          headerStyle: {
+            backgroundColor: COLORS.background,
+          },
+          headerTintColor: '#fff',
         }}
       />
-    </bottomTab.Navigator>
+    </HomeStack.Navigator>
+  );
+}
+
+function MainTabs() {
+  return (
+    <BottomTab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarHideOnKeyboard: true,
+        tabBarActiveTintColor: COLORS.active,
+        tabBarInactiveTintColor: COLORS.inactive,
+        tabBarStyle: {
+          backgroundColor: COLORS.background,
+          borderTopColor: COLORS.border,
+          borderTopWidth: StyleSheet.hairlineWidth,
+          height: 60,
+          paddingTop: 6,
+          paddingBottom: 8,
+        },
+      }}
+    >
+      <BottomTab.Screen
+        name="Home"
+        component={HomeStackScreen}
+        options={{
+          tabBarIcon: ({ color, size, focused }) => (
+            <Home
+              color={color}
+              size={size}
+              fill={focused ? color : 'transparent'}
+            />
+          ),
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Search"
+        component={SearchStack}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Search color={color} size={size} />
+          ),
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Profile"
+        component={ProfileView}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <User color={color} size={size} />
+          ),
+        }}
+      />
+    </BottomTab.Navigator>
   );
 }
 
 function AppStack() {
   return (
-    <stack.Navigator
+    <AppStackNav.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: COLORS.background },
+        headerStyle: {
+          backgroundColor: COLORS.background,
+        },
         headerTintColor: '#fff',
-        headerTitleStyle: { fontWeight: '600' },
-        headerShadowVisible: false,
-        cardStyle: { backgroundColor: COLORS.background },
+        headerTitleStyle: {
+          fontWeight: '600',
+        },
+        cardStyle: {
+          backgroundColor: COLORS.background,
+        },
       }}
     >
-      <stack.Screen
+      <AppStackNav.Screen
         name="MainTabs"
         component={MainTabs}
         options={{ headerShown: false }}
       />
-      <stack.Screen name="PostScreen" component={PostScreen} options={{ headerTitle: '' }}/>
-    </stack.Navigator>
+
+      <AppStackNav.Screen
+        name="PostScreen"
+        component={PostScreen}
+        options={{
+          headerTitle: '',
+        }}
+      />
+    </AppStackNav.Navigator>
   );
 }
 
 function AuthStack() {
   return (
-    <topTab.Navigator
+    <TopTab.Navigator
       screenOptions={{
-        tabBarStyle: { backgroundColor: COLORS.background, elevation: 0, shadowOpacity: 0 },
-        tabBarIndicatorStyle: { backgroundColor: COLORS.accent, height: 2 },
+        tabBarStyle: {
+          backgroundColor: COLORS.background,
+          elevation: 0,
+          shadowOpacity: 0,
+        },
+        tabBarIndicatorStyle: {
+          backgroundColor: COLORS.accent,
+          height: 2,
+        },
         tabBarActiveTintColor: '#fff',
         tabBarInactiveTintColor: COLORS.inactive,
-        tabBarLabelStyle: { fontWeight: '600', textTransform: 'none' },
+        tabBarLabelStyle: {
+          fontWeight: '600',
+          textTransform: 'none',
+        },
       }}
     >
-      <topTab.Screen name="Login" component={LoginView} />
-      <topTab.Screen name="Register" component={RegisterView} />
-    </topTab.Navigator>
-  )
+      <TopTab.Screen
+        name="Login"
+        component={LoginView}
+      />
+
+      <TopTab.Screen
+        name="Register"
+        component={RegisterView}
+      />
+    </TopTab.Navigator>
+  );
 }
 
 function RootNavigator() {
@@ -146,14 +196,16 @@ function RootNavigator() {
     <NavigationContainer theme={AppDarkTheme}>
       {isAuthenticated ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
-  )
+  );
 }
 
 export default function App() {
-
   return (
     <AuthProvider>
-      <StatusBar style="light" />
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="#000"
+      />
       <RootNavigator />
     </AuthProvider>
   );
@@ -163,7 +215,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

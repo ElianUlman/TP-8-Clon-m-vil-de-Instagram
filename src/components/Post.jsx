@@ -1,11 +1,25 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import { Heart, MessageCircle, Send, Bookmark } from 'lucide-react-native';
 
 export default function Post({ post }) {
     const [liked, setLiked] = useState(false);
     const [bookmarked, setBookmarked] = useState(false);
     const [likeCount, setLikeCount] = useState(post.likes ?? 1234);
+
+    const navigation = useNavigation();
+
+    const irAlPerfil = () => {
+        // Navega a UserProfile (stack), no a Profile (tab).
+        // Así el tab de Perfil propio nunca se contamina con estos params.
+        navigation.navigate('UserProfile', {
+            username: post.photographer,
+            profilePicture: post.url,
+            description: post.description,
+        });
+    };
 
     const toggleLike = () => {
         setLiked((prev) => !prev);
@@ -17,6 +31,7 @@ export default function Post({ post }) {
     };
 
     return (
+    
         <View style={styles.container}>
             <View style={styles.header}>
                 <Image source={{ uri: post.url }} style={styles.pfp} />
@@ -58,6 +73,7 @@ export default function Post({ post }) {
                 {post.description}
             </Text>
         </View>
+        
     )
 }
 

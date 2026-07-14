@@ -93,6 +93,7 @@ export default function SearchInputView() {
             <Text style={styles.emptyText}>Sin resultados</Text>
           ) : (
             <FlatList
+              style={styles.suggestionList}
               data={suggestions}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => (
@@ -127,6 +128,7 @@ const styles = StyleSheet.create({
   historyItem: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: '#222' },
   historyText: { marginLeft: 8, fontSize: 15, color: '#fff' },
   suggestionsContainer: { flex: 1, paddingHorizontal: 12 },
+  suggestionList: { flex: 1 },
   suggestionCard: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: '#222' },
   suggestionImageWrapper: { width: 56, height: 56, borderRadius: 28, overflow: 'hidden', marginRight: 10 },
   suggestionImage: { width: '100%', height: '100%' },

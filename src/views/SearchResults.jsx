@@ -62,13 +62,18 @@ export default function SearchResultsView() {
         </View>
       ) : (
         <FlatList
+          style={styles.resultList}
           data={images}
           keyExtractor={(item) => item.id.toString()}
           numColumns={3}
           contentContainerStyle={styles.list}
           columnWrapperStyle={styles.columnWrapper}
+          ListEmptyComponent={<Text style={styles.emptyText}>No se encontraron resultados.</Text>}
           renderItem={({ item }) => (
-            <Pressable onPress={() => navigation.getParent()?.navigate('PostScreen', { post: item })}>
+            <Pressable
+              style={styles.itemContainer}
+              onPress={() => navigation.getParent()?.navigate('PostScreen', { post: item })}
+            >
               <Image source={{ uri: item.url }} style={styles.image} />
             </Pressable>
           )}
@@ -85,6 +90,9 @@ const styles = StyleSheet.create({
   input: { flex: 1, height: 42, borderWidth: 1, borderColor: '#ddd', borderRadius: 20, paddingHorizontal: 14, backgroundColor: '#f2f2f2' },
   center: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000' },
   list: { paddingHorizontal: 2, paddingBottom: 8 },
+  resultList: { flex: 1 },
   columnWrapper: { justifyContent: 'space-between' },
-  image: { width: '32%', aspectRatio: 1, marginBottom: 2, borderRadius: 2 },
+  itemContainer: { flexBasis: '32%', marginBottom: 2 },
+  image: { width: '100%', aspectRatio: 1, borderRadius: 2 },
+  emptyText: { color: '#999', textAlign: 'center', paddingTop: 40 },
 });
